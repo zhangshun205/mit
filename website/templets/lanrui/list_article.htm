@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta content="telephone=no" name="format-detection" />
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="{dede:global.cfg_templets_skin/}/style/reset.css">
+		<link rel="stylesheet" href="{dede:global.cfg_templets_skin/}/style/index.css">
+		<link rel="stylesheet" href="{dede:global.cfg_templets_skin/}/style/head.css">
+		<link rel="stylesheet" href="{dede:global.cfg_templets_skin/}/style/foot.css">
+		<!--<title>{dede:field.title/}</title>-->
+		<title>汉诺国际官网</title>
+		<style>
+
+		</style>
+	</head>
+
+	<body> {dede:include filename="head.htm"/}
+		<div style="clear:both"></div>
+		<banner>
+			<ul>
+				<li> {dede:type} <img src="/templets/lanrui/images/banner[field:id/].jpg" style="padding-bottom:10px;" alt="[field:typename/]" /> {/dede:type} </li>
+			</ul>
+		</banner>
+		<!--{dede:field.content/}-->
+		<main>
+			<div class="zixun">
+				<div class="newslists">
+					<div class="newsliststop">
+						<div class="newslistsleft"> <img src="{dede:global.cfg_templets_skin/}/images/AD0I4oLBBRACGAAgi-6WwAUol_z8wgIwhgM4-AI.jpg" alt=""> </div>
+						<div class="newslistsright"> {dede:arclist pagesize ='2' typeid ='18' orderby ='pubdate' titlelen='30'}
+							<div class="newslis">
+								<div class="newslistop">
+									<section>
+										<a target="_blank" href="[field:arcurl/]">[field:title/]</a>
+									</section>
+									<section>[field:pubdate function="MyDate('Y-m-d',@me)"/]</section>
+								</div>
+								<div style="clear:both"></div>
+								<p> [field:description/] </p>
+							</div> {/dede:arclist} </div>
+					</div>
+					<div style="clear:both"></div>
+					<div class="newsbottom"> {dede:arclist pagesize ='5' typeid ='6' orderby ='pubdate' titlelen='30' }
+						<div class="newsbottomlist">
+							<div>
+								<section class="font3">[field:pubdate function="MyDate('d',@me)"/]</section>
+								<section class="color1">[field:pubdate function="MyDate('Y-m-d',@me)"/]</section>
+							</div>
+							<div>
+								<section class="newsbotttile">
+									<section>
+										<a target="_blank" href="[field:arcurl/]">[field:title/]</a>
+									</section>
+								</section>
+								<section class="color1"> [field:description/] </section>
+							</div>
+							<div style="clear:both"></div>
+						</div> {/dede:arclist} </div>
+				</div>
+			</div> {dede:include filename="footer.htm"/} </main>
+		<script src="{dede:global.cfg_templets_skin/}/style/jquery.min.js"></script>
+		<script src="{dede:global.cfg_templets_skin/}/style/index.js"></script>
+	</body>
+
+</html>

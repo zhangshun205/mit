@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta content="telephone=no" name="format-detection" />
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="{dede:global.cfg_templets_skin/}/style/reset.css">
+		<link rel="stylesheet" href="{dede:global.cfg_templets_skin/}/style/index.css">
+		<link rel="stylesheet" href="{dede:global.cfg_templets_skin/}/style/head.css">
+		<link rel="stylesheet" href="{dede:global.cfg_templets_skin/}/style/foot.css">
+		<script src="{dede:global.cfg_templets_skin/}/style/jquery.min.js"></script>
+		<!--<title>{dede:field.title/}</title>-->
+		<title>汉诺国际官网</title>
+		<style>
+
+		</style>
+	</head>
+
+	<body>
+		{dede:include filename="head.htm"/}
+		<div style="clear:both"></div>
+		<banner>
+			<ul>
+				<li>
+					{dede:type}
+					<img src="/templets/lanrui/images/banner[field:id/].jpg" style="padding-bottom:10px;" alt="[field:typename/]" /> {/dede:type}
+				</li>
+			</ul>
+		</banner>
+		<main>
+			{dede:field.content/} {dede:include filename="footer.htm"/}
+		</main>
+		<script src="{dede:global.cfg_templets_skin/}/style/index.js"></script>
+	</body>
+
+</html>

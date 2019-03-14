@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="public/meta" /}
+    {include file="public/link" /}
+</head>
+<body data-type="index" class="theme-white">
+<div class="am-g tpl-g">
+    {include file="public/header" /}
+    {include file="public/left" /}
+    {include file="public/content_top" /}
+    <ol class="am-breadcrumb">
+        <li><a href="../home/index.html" class="am-icon-home">首页</a></li>
+        <li><a href="#">充值管理</a></li>
+        <li class="am-active">系统充值</li>
+    </ol>
+    <div class="am-form-inline" role="form">
+        <span>日期范围：</span>
+        <div class="am-form-group ">
+            <input type="text" class="am-form-field am-input-sm" name="start" placeholder="请选择起始日期"
+                   data-am-datepicker onfocus="this.blur()" value="{$arr.start_query}"/>
+        </div>
+        <div class="am-form-group ">
+            <input type="text" class="am-form-field am-input-sm" name="end" placeholder="请选择结束日期" data-am-datepicker
+                   onfocus="this.blur()" value="{$arr.end_query}"/>
+        </div>
+        <div class="am-form-group ">
+            <input type="text" id="name" class="am-form-field am-input-sm" placeholder="请输入名称或手机号"
+                   value="{$arr.name}"/>
+        </div>
+        <button type="button" class="am-btn am-btn-primary am-btn-sm" onclick="info_query()">查询</button>
+        <button type="button" class="am-btn am-btn-warning am-btn-sm" onclick="clear_query()">清除查询</button>
+        <!-- ,array('excel'=>1,'name'=>$name,'start_query'=>$start_query,'end_query'=>$end_query)) -->
+        <!--<a href="{:url('index')}?excel=1&name={$name}&start_query={$start_query}&end_query={$end_query}">导出Excel表格</a>-->
+    </div>
+    <div class="widget am-cf">
+        <hr data-am-widget="divider" class="am-divider am-divider-default"/>
+        <div class="widget-body widget-body-lg am-fr">
+            <div class="am-scrollable-horizontal">
+                <table class="{$table}">
+                    <thead>
+                    <tr>
+                        <th>用户ID</th>
+                        <th>手机号码</th>
+                        <th>昵称</th>
+                        <th>真实姓名</th>
+                        <th>充值金额</th>
+                        <th>真实金额</th>
+                        <th>充值备注</th>
+                        <th>状态</th>
+                        <th>充值时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {volist name="list" id="vo" empty="$empty"}
+                    <tr>
+                        <td>{$vo.id}</td>
+                        <td>{$vo.user.phone}</td>
+                        <td>{$vo.user.name}</td>
+                        <td>{$vo.user.real_name}</td>
+                        <td>{$vo.number}</td>
+                        <td>{$vo.total}</td>
+                        <td>{$vo.remark}</td>
+                        <td>{$vo.status_text}</td>
+                        <td>{$vo.time}</td>
+                    </tr>
+                    {/volist}
+                    <tr>
+                        <th colspan="4">总计:</th>
+                        <th>{$sum_number}</th>
+                        <th>{$sum_total}</th>
+                        <th colspan="5">/</th>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="dataTables_info" id="DataTables_Table_1_info">
+                    <div class="am-pagination-left">{$page}</div>
+                </div>
+            </div>
+        </div>
+        {include file="public/content_foot" /}
+    </div>
+    <form action="{:url('Recharges/SystemRecharge')}" class="am-form-inline" role="form" id="form" method="get">
+        <input type="hidden" name="name"/>
+        <input type="hidden" name="start_query">
+        <input type="hidden" name="end_query">
+        <input type="hidden" name="status">
+        <input type="hidden" name="page">
+        <input type="hidden" name="a" value="{$a}">
+        <input type="hidden" name="b" value="{$b}">
+    </form>
+    {include file="public/foot" /}
+    <script type="text/javascript">
+        function sub(id) {
+            $.ajax({
+                url: "{:url('Users/edit')}",
+                type: "post",
+                data: {id: id},
+                success: function (r) {
+                    if (r['code'] == 1) {
+                        layer.msg(r['msg']);
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 1500);
+                    } else {
+                        layer.msg(r['msg']);
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

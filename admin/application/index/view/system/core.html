@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="public/meta" /}
+    {include file="public/link" /}
+    {include file="public/form" /}
+    <style>
+        .am-panel-hd {
+            margin-bottom: 10px;
+        }
+
+        .s1 {
+            margin: 10px 15px;
+        }
+        .upload_button {
+            width: 180px;
+            height: 50px;
+            border-radius: 5px;
+            color: #fff;
+            background-color: #0e90d2;
+            border-color: #0e90d2;
+        }
+    </style>
+</head>
+<body data-type="index" class="theme-white">
+<div class="am-g tpl-g">
+    {include file="public/header" /}
+    {include file="public/left" /}
+    {include file="public/content_top" /}
+    <ol class="am-breadcrumb" style="    margin-bottom: 0;">
+        <li><a href="../home/index.html" class="am-icon-home">首页</a></li>
+        <li><a href="closed.html">系统设置</a></li>
+        <li class="am-active">核心设置</li>
+    </ol>
+    <div class="widget am-cf">
+        <form class="am-cf" id="form" onsubmit="return false">
+            <div class="am-panel am-panel-primary">
+                <div class="am-panel-hd">基础信息</div>
+                <div class="am-form-group">
+                    <span class="s1">出入金汇率：</span>
+                    <label class="am-form-label">
+                        <input type="text" class="am-form-field am-input-sm" name="exchange_rate"
+                               value="{$list['exchange_rate']}"/>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">佣金汇率：</span>
+                    <label class="am-form-label">
+                        <input type="text" class="am-form-field am-input-sm" name="bonus_rate"
+                               value="{$list['bonus_rate']}"/>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">时令设置：</span>
+                    <label class="am-form-label">
+                        <select name="season" class="am-form-field am-input-sm">
+                            {switch name="$list['season']" }
+                            {case value="0" break="0"}
+                            <option selected value="1">冬时令</option>
+                            <option value="0">夏时令</option>
+                            {/case}
+                            {case value="0"}
+                            <option selected value="0">夏时令</option>
+                            <option value="1">冬时令</option>
+                            {/case}
+                            {default /}
+                            <option selected value="1">冬时令</option>
+                            <option value="0">夏时令</option>
+                            {/switch}
+                        </select>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">平台银行开户名：</span>
+                    <label class="am-form-label">
+                        <input type="text" class="am-form-field am-input-sm" name="user_name"
+                               value="{$list['user_name']}"/>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">平台银行开户行：</span>
+                    <label class="am-form-label">
+                        <input type="text" class="am-form-field am-input-sm" name="bank_name"
+                               value="{$list['bank_name']}"/>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">平台银行卡号：</span>
+                    <label class="am-form-label">
+                        <input type="text" class="am-form-field am-input-sm" name="bank_card"
+                               value="{$list['bank_card']}"/>
+                    </label>
+                </div>
+                <div class="am-form-group" id="no1">
+                    <span class="s1">平台支付宝二维码：</span>
+                    <label class="am-form-label">
+                        <img id="newPhoto1" style="max-height:200px;" src="{$list.ali_pay}"/>
+                    </label>
+                    <span class="s2" id="uploadPhotoConfirm1"></span>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">上传图片：</span>
+                    <label class="am-form-label">
+                        <input type="button" class="upload_button" id="upload_button1" onclick="upload(1)"
+                               value="上传图片"/><br/>
+                        <input type="hidden" id="newPhotoName1" name="ali_pay" value="{$list['ali_pay']}"/>
+                        <input type="file" style="display:none" name="file">
+                    </label>
+                    <span class="s2">*请上传格式为.png .jpg .jpeg 的图片必须为200*200</span>
+                </div>
+                <div class="am-form-group" id="no2">
+                    <span class="s1">平台微信二维码：</span>
+                    <label class="am-form-label">
+                        <img id="newPhoto2" style="max-height:200px;" src="{$list.wechat_pay}"/>
+                    </label>
+                    <span class="s2" id="uploadPhotoConfirm2"></span>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">上传图片：</span>
+                    <label class="am-form-label">
+                        <input type="button" class="upload_button" id="upload_button2" onclick="upload(2)"
+                               value="上传图片"/><br/>
+                        <input type="hidden" id="newPhotoName2" name="wechat_pay" value="{$list['wechat_pay']}"/>
+                        <input type="file" style="display:none" name="file">
+                    </label>
+                    <span class="s2">*请上传格式为.png .jpg .jpeg 的图片必须为200*200</span>
+                </div>
+                <input type="hidden" class="am-form-field am-input-sm" name="id" value="{$list['id']}"/>
+                <div class="am-panel-bd" style="padding-bottom: 1rem;margin-left: 13rem">
+                    <button type="submit" class="am-btn am-btn-primary am-btn-sm" onclick="sub()">确定</button>
+                    <a href="core.html?a={$a}&b={$b}" class="am-btn am-btn-secondary am-btn-sm">返回</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="public/foot" /}
+<script type="text/javascript" src="/static/ajaxupload.js"></script>
+<script type="text/javascript">
+    function sub() {
+        var arr = parseFormJson("#form");
+        // console.log(arr);return false
+        $.ajax({
+            url: "{:url('System/core_edits')}",
+            data: {arr: arr},
+            type: "post",
+            success: function (r) {
+                if (r['code'] == 1) {
+                    alert_msg(r['msg'])
+                } else {
+                    alert_msg(r['msg']);
+                }
+            }
+        });
+    }
+</script>
+<script type="text/javascript">
+    function upload(type) {
+        hand_upload(type);
+    }
+
+    function hand_upload(type) {
+        var btn = 'upload_button' + type;
+        var confirmDiv = $('#uploadPhotoConfirm' + type);
+        var newPhotoName = 'newPhotoName' + type;
+        var newPhoto = 'newPhoto' + type;
+        var no = 'no' + type;
+
+        var button = $('#' + btn), interval;
+        var fileType = 'pic', fileNum = 'one';
+        new AjaxUpload(button, {
+            action: "{:url('Upload/upload')}",
+            name: 'file',
+            onSubmit: function (file, ext) {
+                if (fileType == 'pic') {
+                    if (ext && /^(jpg|png|jpeg|gif|JPG)$/.test(ext)) {
+                        this.setData({'info': '文件类型为图片'});
+                    } else {
+                        confirmDiv.text('文件格式错误，请上传格式为.png .jpg .jpeg 的图片');
+                        return false;
+                    }
+                }
+                confirmDiv.text('文件上传中');
+                if (fileNum == 'one') this.disable();
+                interval = window.setInterval(function () {
+                    var text = confirmDiv.text();
+                    if (text.length < 14) {
+                        confirmDiv.text(text + '.');
+                    } else {
+                        confirmDiv.text('文件上传中');
+                    }
+                }, 200);
+            },
+            onComplete: function (file, response) {
+                if (response != 'success') {
+                    if (response == '2') {
+                        confirmDiv.text("文件格式错误，请上传格式为.png .jpg .jpeg 的图片");
+                    } else {
+                        confirmDiv.text('上传完成');
+                        $('#' + newPhotoName).val("/uploads/" + response);
+                        $('#' + newPhoto).attr("src", "/uploads/" + response);
+                        $('#' + no).show();
+                    }
+                }
+                window.clearInterval(interval);
+                this.enable();
+                if (response == 'success') alert('上传成功');
+            }
+        });
+    }
+    hand_upload(1);
+    hand_upload(2);
+</script>
+</body>
+</html>

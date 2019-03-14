@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="public/meta" /}
+    {include file="public/link" /}
+    {include file="public/form" /}
+    <style>
+        .deger {
+            color: red;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body data-type="index" class="theme-white">
+<div class="am-g tpl-g">
+    {include file="public/header" /}
+    {include file="public/left" /}
+    {include file="public/content_top" /}
+    <ol class="am-breadcrumb" style="    margin-bottom: 0;">
+        <li><a href="../home/index.html" class="am-icon-home">首页</a></li>
+        <li><a href="#">代理商管理</a></li>
+        <li class="am-active">修改代理信息</li>
+    </ol>
+    <div class="widget am-cf">
+        <form class="am-cf" id="user_edit_form" onsubmit="return false">
+            <div class="am-panel am-panel-primary">
+                <div class="am-panel-hd">基础信息</div>
+                <div class="am-form-group">
+                    <span class="s1">代理商昵称：</span>
+                    <label class="am-form-label">
+                        <input type="text" id="name" class="am-form-field am-input-sm" name="name"
+                               value="{$list['name']}"/>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">代理商编号：</span>
+                    <label class="am-form-label">
+                        <input type="text" id="number" class="am-form-field am-input-sm" name="number"
+                               value="{$list['number']}"/>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">代理商真实姓名：</span>
+                    <label class="am-form-label">
+                        <input type="text" id="real_name" class="am-form-field am-input-sm" name="real_name"
+                               value="{$list['real_name']}"/>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">代理商手机号：</span>
+                    <label class="am-form-label">
+                        <input type="text" class="am-form-field am-input-sm" name="phone"
+                               value="{$list['phone']}"/>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">密码：</span>
+                    <label class="am-form-label">
+                        <input type="password" id="password" class="am-form-field am-input-sm" name="password" value=""
+                               placeholder=""/><span class="deger">*为空时不修改*</span>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">交易密码：</span>
+                    <label class="am-form-label">
+                        <input type="password" id="trade_password" class="am-form-field am-input-sm" name="security"
+                               value="" placeholder=""/><span class="deger">*为空时不修改*</span>
+                    </label>
+                </div>
+                <div class="am-panel-bd" style="padding-bottom: 1rem;margin-left: 13rem">
+                    <button type="submit" class="am-btn am-btn-primary am-btn-sm" onclick="sub() ">确定</button>
+                    <a href="index.html" class="am-btn am-btn-secondary am-btn-sm">返回</a>
+                </div>
+                <input type="hidden" name="id" value="{$list['id']}">
+            </div>
+        </form>
+    </div>
+</div>
+{include file="public/foot" /}
+<script type="text/javascript">
+    function sub() {
+        var arr = parseFormJson("#user_edit_form");
+        $.ajax({
+            url: "{:url('Agents/agent_edits')}",
+            data: {arr: arr},
+            type: "post",
+            success: function (r) {
+                if (r['code'] == 1) {
+                    alert_msg(r['msg']);
+                } else {
+                    alert_msg(r['msg']);
+                }
+            },
+            error: function (r) {
+                console.log(r);
+            },
+        });
+    }
+</script>
+
+</body>
+</html>

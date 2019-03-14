@@ -1,0 +1,86 @@
+.headTop {
+	position: relative;
+	width: 100%;
+	background: #111113;
+	height: 100px;
+}
+.headlogo {
+	width: 960px;
+	height: 100px;
+	margin: 0 auto;
+	position: relative;
+}
+.li_tel {
+	display: inline-block;
+	font-size: 25px;
+	line-height: 30px;
+	height: 30px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	color: #fff;
+	margin: auto;
+}
+.logo {
+	padding-top: 13px;
+	width: 360px;
+}
+.logo img {
+	width: 400px;
+}
+img {
+	border: 0;
+	vertical-align: top;
+}
+.active {
+	background-color: #e5c991;
+	color: #fff !important;
+}
+.header {
+	width: 960px;
+	margin: 0 auto;
+	margin-top: 30px;
+	font-size: 16px;
+	position: relative;
+	z-index: 100;
+}
+.header .nav li {
+	float: left;
+	width: 106px;
+	text-align: center;
+}
+.header .nav li a {
+	display: inline-block;
+	width: 120px;
+	height: 35px;
+	line-height: 35px;
+	border-radius: 20px;
+}
+.header .nav li:nth-child(2), .header .nav li:nth-child(3), .header .nav li:nth-child(4), .header .nav li:nth-child(5), .header .nav li:nth-child(6), .header .nav li:nth-child(7) {
+	margin-left: 15px;
+}
+.header .nav li > a:hover {
+	background-color: #e5c991;
+	color: #fff;
+}
+.us {
+	font-size: 14px;
+	color: #fff;
+	background-color: #e5c991;
+	border-radius: 5px;
+	display: none;
+}
+.us a {
+	color: #fff;
+}
+.arrow-up {
+	width: 0;
+	height: 0;
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	border-bottom: 8px solid #e5c991;
+	margin-top: 5px;
+	margin-left: 42px;
+	display: none;
+}

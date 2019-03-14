@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="public/meta" /}
+    {include file="public/link" /}
+    {include file="public/form" /}
+</head>
+<body data-type="index" class="theme-white">
+<div class="am-g tpl-g">
+    {include file="public/header" /}
+    {include file="public/left" /}
+    {include file="public/content_top" /}
+    <ol class="am-breadcrumb" style="    margin-bottom: 0;">
+        <li><a href="../home/index.html?a=0&b=0" class="am-icon-home">首页</a></li>
+        <li><a href="../Withdraws/history.html?a={$a}&b={$b}">财务管理</a></li>
+        <li class="am-active">申请提现</li>
+    </ol>
+    <div class="widget am-cf">
+        <form class="am-cf" id="agent_apply_form" onsubmit="return false">
+            <div class="am-panel am-panel-primary">
+                <div class="am-panel-hd">基础信息</div>
+                <div class="am-form-group">
+                    <span class="s1">当前余额：</span>
+                    <label class="am-form-label">
+                        <input type="text" class="am-form-field am-input-sm" readonly
+                               value="{$list['account']}"/>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">提现金额：</span>
+                    <label class="am-form-label">
+                        <input type="text" id="number" class="am-form-field am-input-sm" name="number"
+                               placeholder="请输入提现金额"/>
+                    </label>
+                </div>
+                <input type="hidden" value="{$list.uid}" name="uid">
+                <div class="am-panel-bd" style="padding-bottom: 1rem;margin-left: 13rem">
+                    <button type="submit" class="am-btn am-btn-primary am-btn-sm" onclick="sub()">确定</button>
+                    <a href="index.html" class="am-btn am-btn-secondary am-btn-sm">返回</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="public/foot" /}
+<script type="text/javascript">
+    function sub() {
+        var arr = parseFormJson("#agent_apply_form");
+        if (arr.number == "") {
+            alert_msg('提现金额不能为空');
+            return false;
+        } else {
+            $.ajax({
+                url: "{:url('Withdraws/applys')}",
+                data: {arr: arr},
+                type: "post",
+                success: function (r) {
+                    if (r['code'] == 1) {
+                        alert_msg(r['msg']);
+                        setTimeout(function () {
+                            window.location.href = "{:url('Withdraws/history')}";
+                        }, 1500);
+                    } else {
+                        alert_msg(r['msg']);
+                    }
+                }
+            });
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="public/meta" /}
+    {include file="public/link" /}
+    <style>
+        .content {
+            width: 300px;
+            overflow: hidden; /*超出隐藏*/
+            text-overflow: ellipsis; /*超出文本设置为...*/
+            /*display: -webkit-box; !*将div1转换为盒子模型*!*/
+            /*-webkit-line-clamp: 2; !*设置div1的文本为2行*!*/
+            -webkit-box-orient: vertical; /*从顶部向底部垂直布置子元素*/
+            white-space: initial;
+        }
+    </style>
+</head>
+<body data-type="index" class="theme-white">
+<div class="am-g tpl-g">
+    {include file="public/header" /}
+    {include file="public/left" /}
+    {include file="public/content_top" /}
+    <ol class="am-breadcrumb">
+        <li><a href="../home/index.html" class="am-icon-home">首页</a></li>
+        <li><a href="../users/index.html?a={$a}&b={$b}">用户管理</a></li>
+        <li class="am-active">用户短信记录</li>
+    </ol>
+    <div class="widget am-cf">
+        <div class="am-form-inline" role="form"><span>日期范围：</span>
+            <div class="am-form-group "><input type="text" class="am-form-field am-input-sm" name="start"
+                                               placeholder="请选择起始日期" data-am-datepicker onfocus="this.blur()"
+                                               value="{$arr.start_query}"/></div>
+            <div class="am-form-group "><input type="text" class="am-form-field am-input-sm" name="end"
+                                               placeholder="请选择结束日期" data-am-datepicker onfocus="this.blur()"
+                                               value="{$arr.end_query}"/></div>
+            <div class="am-form-group ">
+                <input type="text" id="name" class="am-form-field am-input-sm" name="name" placeholder="请输入会员信息"
+                       value="{$arr.name}"/></div>
+            <button type="button" class="am-btn am-btn-primary am-btn-sm" onclick="info_query()">查询</button>
+            <button type="button" class="am-btn am-btn-warning am-btn-sm" onclick="clear_query()">清除查询</button>
+        </div>
+        <hr data-am-widget="divider" class="am-divider am-divider-default"/>
+        <div class="widget-body widget-body-lg am-fr">
+            <div class="am-scrollable-horizontal">
+                <table class="{$table}">
+                    <thead>
+                    <tr>
+                        <th>用户姓名</th>
+                        <th>手机号码</th>
+                        <th>发送状态</th>
+                        <th>客户端ip</th>
+                        <th>发送内容</th>
+                        <th>发送时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {volist name="list" id="vo" empty="$empty"}
+                    <tr>
+                        <td>{$vo.name}</td>
+                        <td>{$vo.phone}</td>
+                        <td>{$vo.status}</td>
+                        <td>{$vo.ip}</td>
+                        <td class="content">{$vo.content}</td>
+                        <td>{$vo.time}</td>
+                    </tr>
+                    {/volist}
+                    </tbody>
+                </table>
+                <div class="dataTables_info" id="DataTables_Table_1_info">
+                    <div class="am-pagination-left">{$page}</div>
+                </div>
+            </div>
+        </div>
+        {include file="public/content_foot" /}
+    </div>
+    <form action="{:url('Users/user_message')}" class="am-form-inline" role="form" id="form" method="get">
+        <input type="hidden" name="name"/>
+        <input type="hidden" name="start_query">
+        <input type="hidden" name="end_query">
+        <input type="hidden" name="status">
+        <input type="hidden" name="page">
+        <input type="hidden" name="a" value="{$a}">
+        <input type="hidden" name="b" value="{$b}">
+    </form>
+    {include file="public/foot" /}
+</div>
+</body>
+</html>

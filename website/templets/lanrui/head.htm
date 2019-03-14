@@ -1,0 +1,81 @@
+﻿<header><div class="headTop"><div class="headlogo"><div class="logo">
+				<a href="/"><img src="{dede:global.cfg_templets_skin/}/images/logo.png" alt=""></a>
+			</div>
+			<p class="li_tel">官网唯一电话：{dede:global.cfg_phone/}</p>
+		</div>
+	</div>
+	<div class="header">
+		<ul class="nav">
+			<li>
+				<a href="/">首页</a>
+			</li>
+			<!--{dede:channelartlist typeid='1,4,7' currentstyle="
+			<li class='active'>
+				<a href='~typelink~'>~typename~</a>
+			</li>" }
+			<li>
+				<a href="{dede:field name='typeurl'/}">{dede:field name='typename'/}</a>
+				<div class="arrow-up"></div>
+				<div class="us">
+					{dede:channel type='son' noself='yes' }
+					<div>
+						<a href="[field:typelink/]">[field:typename/]</a>
+					</div>
+					{/dede:channel}
+				</div>
+			</li>
+			{/dede:channelartlist}-->
+			<!--关于我们-->
+			{dede:type typeid='1'}
+			<li>
+				<a href="[field:typelink/]">[field:typename/]</a>
+			</li>
+			{/dede:type}
+			<!--行业资讯-->
+			{dede:type typeid='6'}
+			<li>
+				<a href="[field:typelink/]">[field:typename/]</a>
+			</li>
+			{/dede:type}
+			<!--产品介绍-->
+			{dede:type typeid='7'}
+			<li>
+				<a href="[field:typelink/]">[field:typename/]</a>
+			</li>
+			{/dede:type}
+			<!--线上开户-->
+			{dede:type typeid='23'}
+			<li>
+				<a href="[field:typelink/]">[field:typename/]</a>
+			</li>
+			{/dede:type}
+			<!--软件下载-->
+			{dede:type typeid='16'}
+			<li>
+				<a href="[field:typelink/]">[field:typename/]</a>
+			</li>
+			{/dede:type}
+
+			<!--{dede:type typeid='18'}
+			<li>
+				<a href="[field:typelink/]">[field:typename/]</a>
+			</li>
+			{/dede:type} 
+			{dede:type typeid='19'}
+			<li>
+				<a href="[field:typelink/]">[field:typename/]</a>
+			</li>
+			{/dede:type} {dede:type typeid='21'}
+			<li>
+				<a href="[field:typelink/]">[field:typename/]</a>
+			</li>
+			{/dede:type}{dede:type typeid='6'}
+			<li>
+				<a href="[field:typelink/]">[field:typename/]</a>
+			</li>
+			{/dede:type}-->
+
+		</ul>
+		<div style="clear:both"></div>
+	</div>
+</header>

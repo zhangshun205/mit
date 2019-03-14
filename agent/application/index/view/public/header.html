@@ -1,0 +1,54 @@
+<header>
+    <div class="am-fl tpl-header-logo">
+        <a href="#">
+            <h1 style="margin: 0;line-height: 40px">代理管理系统</h1>
+        </a>
+    </div>
+    <!-- 右侧内容 -->
+    <div class="tpl-header-fluid">
+        <!-- 侧边切换 -->
+        <div class="am-fl tpl-header-switch-button am-icon-list">
+            <span></span>
+        </div>
+        <!-- 其它功能-->
+        <div class="am-fr tpl-header-navbar">
+            <ul>
+                <!-- 欢迎语 -->
+                <li class="am-text-sm tpl-header-navbar-welcome">
+                    <a href="#">欢迎你, <span>管理员</span> </a>
+                </li>
+                <!-- 欢迎语 -->
+                <li class="am-text-sm tpl-header-navbar-welcome">
+                    <a href="{:url('home/password')}">修改密码</a>
+                </li>
+                <!-- 退出 -->
+                <li class="am-text-sm">
+                    <a href="../system/logout">
+                        <span class="am-icon-sign-out"></span> 退出
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <style>
+        /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+        .am-scrollable-horizontal::-webkit-scrollbar {
+            /*width: 20px;*/
+            height: 20px;
+        }
+
+        /*定义滚动条轨道 内阴影+圆角*/
+        .am-scrollable-horizontal::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            background-color: rgb(241,241,241);
+        }
+
+        /*定义滑块 内阴影+圆角*/
+        .am-scrollable-horizontal::-webkit-scrollbar-thumb {
+            background-color: rgb(193,193,193);
+        }
+        .am-scrollable-horizontal::-webkit-scrollbar-thumb:hover{
+            background-color: rgb(193,193,193);
+        }
+    </style>
+</header>

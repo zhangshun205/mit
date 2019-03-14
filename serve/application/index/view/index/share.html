@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>汉诺国际</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="shortcut icon" href="/static/img/icon.png" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="/static/layui/css/layui.css" />
+		<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="/static/css/index.css" />
+	</head>
+
+	<body>
+		<div id="myCarousel" class="carousel slide">
+			<!-- 轮播（Carousel）指标 -->
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+			</ol>
+			<!-- 轮播（Carousel）项目 -->
+			<div class="carousel-inner">
+				<div class="item active">
+					<img class="bannerImg" src="/static/img/banner1.jpg" alt="First slide">
+				</div>
+				<div class="item">
+					<img class="bannerImg" src="/static/img/banner2.jpg" alt="Second slide">
+				</div>
+			</div>
+		</div>
+		<div class="wrapper">
+			<div class="form-horizontal">
+				<!--<div class="form-group">
+					<label for="phone" class="col-sm-2 control-label">手机号：</label>
+					<div class="col-sm-10">
+						<input type="tel" maxlength="11" class="form-control phone" id="phone" placeholder="请输入手机号码">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="code" class="col-sm-2 control-label">验证码：</label>
+					<div class="col-sm-10">
+						<input type="tel" maxlength="11" class="form-control phone" id="code" placeholder="请输入短信验证码">
+						<button class="getcode">获取验证码</button>
+					</div>
+				</div>-->
+				<div class="form-group">
+					<label for="push" class="col-sm-2 control-label">推荐码：</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control pass" id="push" placeholder="请输入推荐码">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="pass" class="col-sm-2 control-label">密码：</label>
+					<div class="col-sm-10">
+						<input type="password" class="form-control pass" id="pass" placeholder="请输入密码">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="confirm" class="col-sm-2 control-label">确认密码：</label>
+					<div class="col-sm-10">
+						<input type="password" class="form-control confirm" id="confirm" placeholder="请输入确认密码">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="name" class="col-sm-2 control-label">用户姓名：</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control idcord" id="name" placeholder="请输入用户名">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="idcord" class="col-sm-2 control-label">身份证号：</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control idcord" id="idcord" placeholder="请输入身份证号">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="bankCard" class="col-sm-2 control-label">银行卡号：</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control dailiName" id="bankCard" placeholder="请输入银行卡号">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="province" class="col-sm-2 control-label">开户行省：</label>
+					<div class="col-sm-10">
+						<input type="tel" maxlength="11" class="form-control inviter" id="province" placeholder="请输入开户行省">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="city" class="col-sm-2 control-label">开户行城市：</label>
+					<div class="col-sm-10">
+						<input type="tel" maxlength="11" class="form-control inviter" id="city" placeholder="请输入开户行城市">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="address" class="col-sm-2 control-label">开户行地址：</label>
+					<div class="col-sm-10">
+						<input type="tel" maxlength="11" class="form-control inviter" id="address" placeholder="请输入开户行地址">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label">身份证照片：</label>
+					<div class="col-sm-10 uploadImg">
+						<img src="" id="idPositive" alt="" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label"></label>
+					<div class="col-sm-10 uploadImg">
+						<img src="" id="idSide" alt="" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label">银行卡照片：</label>
+					<div class="col-sm-10 uploadImg">
+						<img src="" id="idHand" alt="" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="register" class="col-sm-2 control-label"></label>
+					<div class="col-sm-10" style="text-align: center;">
+						<button id="register" type="submit" class="btn btn-default" style="width: 250px;height: 50px;color: #fff;background: #E5C991;">注册</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/static/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/static/layui/layui.all.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var globalUrl = 'http://hrserve.htcrm.net/';
+		//轮播图
+		$('.carousel').carousel({
+			interval: 3000
+		});
+//		$(".getcode").click(function() {
+//			var phone = $("#phone").val(); //手机号
+//			if(!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(phone))) {
+//				layer.msg("手机号码格式不正确");
+//			} else {
+//				$.post(globalUrl, {
+//					nozzle: "register_code",
+//					phone: phone
+//				}, function(res) {
+//					if(res.code == 1) {
+//						layer.msg(res.msg, {
+//							icon: 6,
+//							time: 2000
+//						});
+//						var time = 60;
+//						$(".getcode").attr("disabled", true);
+//						$(".getcode").html(time);
+//						var timer1 = setInterval(function() {
+//							time--;
+//							$(".getcode").html(time);
+//							if(time <= 0) {
+//								$(".getcode").html("获取验证码");
+//								$(".getcode").attr("disabled", false);
+//								clearInterval(timer1);
+//							}
+//						}, 1000);
+//					} else {
+//						layer.msg(res.msg, {
+//							icon: 15,
+//							time: 2000
+//						});
+//					}
+//				});
+//			}
+//		});
+		//验证
+		$("#register").click(function() {
+//			var phone = $("#phone").val(); //手机号
+//			var code = $("#code").val(); //验证码
+			var push = $("#push").val(); //推荐码
+			var pass = $("#pass").val(); //密码
+			var confirm = $("#confirm").val(); //确认密码
+			var name = $("#name").val(); //真实姓名
+			var idcord = $("#idcord").val(); //身份证号
+			var bankCard = $("#bankCard").val(); //银行卡号
+			var province = $("#province").val(); //province 开户行省
+			var city = $("#city").val(); //province 开户城市
+			var address = $("#address").val(); //province 开户地址
+			var idPositiveSrc = $("#idPositive").attr("src"); //身份证正面
+			var idSideSrc = $("#idSide").attr("src"); //身份证反面
+			var idHandSrc = $("#idHand").attr("src"); //银行卡照片
+//			if(!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(phone))) {
+//				layer.msg("手机号码格式不正确");
+//			} else if(code == "") {
+//				layer.msg("请输入短信验证码");
+//			} else 
+			if(push == "") {
+				layer.msg("请输入推荐码");
+			} else if(pass == "") {
+				layer.msg("请输入密码");
+			} else if(pass != confirm) {
+				layer.msg("两次密码输入不一致");
+			} else if(name == "") {
+				layer.msg("请输入真实姓名");
+			} else if(idcord == "") {
+				layer.msg("请输入身份证号");
+			} else if(bankCard == "") {
+				layer.msg("请输入银行卡号");
+			} else if(province == "") {
+				layer.msg("请输入开户行省");
+			} else if(city == "") {
+				layer.msg("请输入开户城市");
+			} else if(address == "") {
+				layer.msg("请输入开户地址");
+			} else if(idPositiveSrc == "") {
+				layer.msg("请上传身份证正面照");
+			} else if(idSideSrc == "") {
+				layer.msg("请上传身份证背面照");
+			} else if(idHandSrc == "") {
+				layer.msg("请上银行卡正面照");
+			} else {
+				console.log(idPositiveSrc, idSideSrc, idHandSrc)
+				$("#register").attr("disabled", true);
+				setTimeout(function() {
+					$("#register").attr("disabled", false);
+				}, 3000);
+				//phone(手机号码)--code(验证码)--push(推广码)--pass(密码)
+				//confirm(确认密码)--name(真实姓名)--idcord(身份证号)--bankCard(银行卡号)
+				//province(开户行省)--city(开户城市)--address(开户地址)
+				//idPositiveSrc(身份证正面照)--idSideSrc(身份证背面照)--idHandSrc(银行卡正面)
+				var allAdress = province + "-" + city + '-' + address;
+				$.post(globalUrl, {
+					nozzle: "register",
+//					phone: phone, //手机号
+//					code: code, //验证码
+					reid: push, //推荐码
+					password: pass, //密码
+					name: name, //真实姓名
+					card: idcord, //身份证号
+					bank_card: bankCard, //银行卡号
+					bank_address: allAdress, //开户行地址
+					positive: idPositiveSrc, //身份证正面
+					other_side: idSideSrc, //身份证反面
+					bank_side: idHandSrc //银行卡正面
+				}, function(res) {
+					if(res.code == 1) {
+						layer.msg(res.msg, {
+							icon: 6,
+							time: 2000
+						});
+					} else {
+						layer.msg(res.msg, {
+							icon: 15,
+							time: 2000
+						});
+					}
+				});
+			}
+		});
+		//上传
+		layui.use('upload', function() {
+			var $ = layui.jquery,
+				upload = layui.upload;
+			//身份证正面 Positive
+			var uploadInst1 = upload.render({
+				elem: '#idPositive',
+				url: globalUrl + "upload",
+				before: function(obj) {
+					//预读本地文件示例，不支持ie8
+					obj.preview(function(index, file, result) {
+						//							$('#idPositive').attr('src', result); //图片链接（base64）
+					});
+				},
+				done: function(res) {
+					//如果上传失败
+					if(res.code == 200) {
+						layer.msg('上传成功', {
+							icon: 6,
+							time: 1500
+						});
+						//上传成功
+						$('#idPositive').attr('src', res.msg);
+					} else {
+						layer.msg('上传失败');
+					}
+				}
+			});
+			//身份证反面 idSide
+			var uploadInst2 = upload.render({
+				elem: '#idSide',
+				url: globalUrl + "upload",
+				before: function(obj) {
+					//预读本地文件示例，不支持ie8
+					obj.preview(function(index, file, result) {
+						//							$('#idSide').attr('src', result); //图片链接（base64）
+					});
+				},
+				done: function(res) {
+					if(res.code == 200) {
+						layer.msg('上传成功', {
+							icon: 6,
+							time: 1500
+						});
+						//上传成功
+						$('#idSide').attr('src', res.msg);
+					} else {
+						layer.msg('上传失败');
+					}
+				}
+			});
+			//手持身份证照
+			var uploadInst3 = upload.render({
+				elem: '#idHand',
+				url: globalUrl + "upload",
+				before: function(obj) {
+					//预读本地文件示例，不支持ie8
+					obj.preview(function(index, file, result) {
+						//							$('#idHand').attr('src', result); //图片链接（base64）
+					});
+				},
+				done: function(res) {
+					if(res.code == 200) {
+						layer.msg('上传成功', {
+							icon: 6,
+							time: 1500
+						});
+						//上传成功
+						$('#idHand').attr('src', res.msg);
+					} else {
+						layer.msg('上传失败');
+					}
+				}
+			});
+		});
+	</script>
+
+</html>

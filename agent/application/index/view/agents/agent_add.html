@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="public/meta" /}
+    {include file="public/link" /}
+    {include file="public/form" /}
+</head>
+<body data-type="index" class="theme-white">
+<div class="am-g tpl-g">
+    {include file="public/header" /}
+    {include file="public/left" /}
+    {include file="public/content_top" /}
+    <ol class="am-breadcrumb" style="    margin-bottom: 0;">
+        <li><a href="../home/index.html" class="am-icon-home">首页</a></li>
+        <li><a href="#">下级管理</a></li>
+        <li class="am-active">注册代理</li>
+    </ol>
+    <div class="widget am-cf">
+        <form class="am-cf" id="user_edit_form" onsubmit="return false">
+            <div class="am-panel am-panel-primary">
+                <div class="am-panel-hd">基础信息</div>
+                <div class="am-form-group">
+                    <span class="s1">上级代理商：</span>
+                    <label class="am-form-label">
+                        <select name="agent" title="" class="am-form-field am-input-sm">
+                            {volist name="agent" id="vo" empty=""}
+                            <option value="{$vo.id}" class="am-form-field am-input-sm">{$vo.name}-{$vo.phone}</option>
+                            {/volist}
+                        </select>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">代理商昵称：</span>
+                    <label class="am-form-label">
+                        <input type="text" id="name" class="am-form-field am-input-sm" name="name" placeholder="请输入昵称"
+                               value="{$list['name']}"/>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">代理商编号：</span>
+                    <label class="am-form-label">
+                        <input type="text" id="number" class="am-form-field am-input-sm" name="number"
+                               placeholder="请输入编号"
+                               value="{$list['number']}"/>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">真实姓名：</span>
+                    <label class="am-form-label">
+                        <input type="text" id="real_name" class="am-form-field am-input-sm" name="real_name"
+                               placeholder="请输入真实姓名"
+                               value="{$list['real_name']}"/>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">手机号:</span>
+                    <label class="am-form-label">
+                        <input type="text" id="phone" class="am-form-field am-input-sm" name="phone"
+                               value="{$list['phone']}" placeholder="请输入正确的手机号"/>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">身份证号：　</span>
+                    <label class="am-form-label">
+                        <input type="text" id="card" class="am-form-field am-input-sm" name="card" value=""
+                               placeholder="请输入身份证号码"/>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">用户密码：　</span>
+                    <label class="am-form-label">
+                        <input type="text" id="password" class="am-form-field am-input-sm" name="password"
+                               value=""/>
+                    </label>
+                    <span style="color: red">(默认密码为123456)</span>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">支付密码：　</span>
+                    <label class="am-form-label">
+                        <input type="text" id="security" class="am-form-field am-input-sm"
+                               name="security" value="" placeholder=""/>
+                    </label>
+                    <span style="color: red">(默认密码为123456)</span>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">佣金比例：　</span>
+                    <label class="am-form-label">
+                        <input type="text" id="fee_ratio" class="am-form-field am-input-sm"
+                               name="fee_ratio" value="{$list['fee_ratio']}" placeholder=""/>
+                    </label>
+                    <span style="color: red">(请输入0-1之间的小数)</span>
+                </div>
+                <input type="hidden" value="{$list.type}" name="type">
+                <input type="hidden" value="{$list.id}" name="id">
+                <div class="am-panel-bd" style="padding-bottom: 1rem;margin-left: 13rem">
+                    <button type="submit" class="am-btn am-btn-primary am-btn-sm" onclick="sub()">确定</button>
+                    <a href="index.html" class="am-btn am-btn-secondary am-btn-sm">返回</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="public/foot" /}
+<script type="text/javascript">
+    function sub() {
+        var arr = parseFormJson("#user_edit_form");
+        if (arr.name == "") {
+            alert_msg('用户名称不能为空');
+            return false;
+        } else if (arr.real_name == "") {
+            alert_msg('真实姓名不能为空');
+            return false;
+        } else if (arr.phone == "") {
+            alert_msg('手机号不能为空');
+            return false;
+        } else {
+            $.ajax({
+                url: "{:url('Agents/agent_adds')}",
+                data: {arr: arr},
+                type: "post",
+                success: function (r) {
+                    if (r['code'] == 1) {
+                        alert_msg(r['msg']);
+                        setTimeout(function () {
+                            window.location.href = "{:url('Agents/second')}";
+                        }, 1500);
+                    } else {
+                        alert_msg(r['msg']);
+                    }
+                }
+            });
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+<html lang="en">
+<head>
+    {include file="public/meta" /}
+    {include file="public/link" /}
+</head>
+<body data-type="index" class="theme-white">
+<div class="am-g tpl-g">
+    {include file="public/header" /}
+    {include file="public/left" /}
+    {include file="public/content_top" /}
+    <ol class="am-breadcrumb">
+        <li><a href="../home/index.html" class="am-icon-home">首页</a></li>
+        <li><a href="../Orders/entrust.html">报表管理</a></li>
+        <!--<li class="am-active"><a href="../Orders/deal?a={$a}&b={$b}">成交记录</a></li>-->
+        <li class="am-active"><a href="">持仓记录</a></li>
+    </ol>
+    <div class="am-form-inline" role="form">
+        <span>日期范围：</span>
+        <div class="am-form-group ">
+            <input type="text" class="am-form-field am-input-sm" name="start" placeholder="请选择起始日期"
+                   data-am-datepicker onfocus="this.blur()" value="{$arr.start_query}"/>
+        </div>
+        <div class="am-form-group ">
+            <input type="text" class="am-form-field am-input-sm" name="end" placeholder="请选择结束日期" data-am-datepicker
+                   onfocus="this.blur()" value="{$arr.end_query}"/>
+        </div>
+        <div class="am-form-group ">
+            <input type="text" id="name" class="am-form-field am-input-sm" placeholder="请输入用户名称或手机号"
+                   value="{$arr.name}"/>
+        </div>
+        <button type="button" class="am-btn am-btn-primary am-btn-sm" onclick="info_query()">查询</button>
+        <button type="button" class="am-btn am-btn-warning am-btn-sm" onclick="clear_query()">清除查询</button>
+        <!-- ,array('excel'=>1,'name'=>$name,'start_query'=>$start_query,'end_query'=>$end_query)) -->
+        <!--<a href="{:url('index')}?excel=1&name={$name}&start_query={$start_query}&end_query={$end_query}">导出Excel表格</a>-->
+        <!-- <button type="button" class="am-btn am-btn-primary am-btn-sm" style="margin-left: 200px: " onclick="Derive_excel()">导出Excel表格</button> -->
+    </div>
+    <div class="widget am-cf">
+        <hr data-am-widget="divider" class="am-divider am-divider-default"/>
+        <div class="widget-body widget-body-lg am-fr">
+            <div class="am-scrollable-horizontal">
+                <table class="{$table}">
+                    <thead>
+                    <tr>
+                        <th>用户姓名</th>
+                        <th>用户编号</th>
+                        <th>合约信息</th>
+                        <th>持仓数量</th>
+                        <th>剩余可用</th>
+                        <th>冻结数量</th>
+                        <th>完成数量</th>
+                        <th>持仓均价</th>
+                        <th>开仓均价</th>
+                        <th>持仓成本均价</th>
+                        <!--<th>交易价值</th>-->
+                        <!--<th>剩余价值</th>-->
+                        <!--<th>冻结价值</th>-->
+                        <th>委托方向</th>
+                        <th>止损价格</th>
+                        <th>止盈价格</th>
+                        <th>占用保证金</th>
+                        <th>持仓盈亏</th>
+                        <th>持仓时间</th>
+                        <!--<th>操作</th>-->
+                    </tr>
+                    </thead>
+                    <tbody id="list">
+                    {volist name="list" id="vo" empty="$empty"}
+                    <tr>
+                        <td>{$vo['user']['real_name']}</td>
+                        <td>{$vo['user']['number']}</td>
+                        <td>{$vo['name']}</td>
+                        <td>{$vo['number']}</td>
+                        <td>{$vo['surplus']}</td>
+                        <td>{$vo['frozen']}</td>
+                        <td>{$vo['finish']}</td>
+                        <td>{$vo['price']}</td>
+                        <td>{$vo['average']}</td>
+                        <td>{$vo['cost']}</td>
+                        <!--<td>{$vo['cost_total']}</td>-->
+                        <!--<td>{$vo['surplus_total']}</td>-->
+                        <!--<td>{$vo['frozen_total']}</td>-->
+                        <td>{$vo['direction']}</td>
+                        <td>{$vo['loss']}</td>
+                        <td>{$vo['profit']}</td>
+                        <td>{$vo['bond_total']}</td>
+                        <td>{$vo['profit_loss']}</td>
+                        <td>{$vo.time}</td>
+                        <!--<td>-->
+                            <!--<a href="#" onclick="depot_del(id={$vo['id']})"-->
+                               <!--class="am-btn am-btn-success am-btn-xs">强制平仓</a>-->
+                        <!--</td>-->
+                    </tr>
+                    {/volist}
+                    <tr>
+                        <th colspan="3">综合:</th>
+                        <th>{$sum['number_sum']}</th>
+                        <th>{$sum['surplus_sum']}</th>
+                        <th colspan="">{$sum['frozen_sum']}</th>
+                        <th>{$sum['finish_sum']}</th>
+                        <th colspan="7">/</th>
+                        <th>{$sum['profit_loss_sum']}</th>
+                        <th colspan="1">/</th>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="am-pagination-left">{$page}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<form action="{:url('Orders/depot')}" class="am-form-inline" role="form" id="form" method="get">
+    <input type="hidden" name="name"/>
+    <input type="hidden" name="start_query">
+    <input type="hidden" name="end_query">
+    <input type="hidden" name="status">
+    <input type="hidden" name="page">
+    <input type="hidden" name="a" value="{$a}">
+    <input type="hidden" name="b" value="{$b}">
+</form>
+{include file="public/foot" /}
+<script>
+    function depot_del() {
+
+    }
+
+    function depot_list() {
+        var name = $("input[id='name']").val();
+        console.log(GetQueryString('page'));
+        // return false;
+        // $("input[name!='keleyicom']") 选择所有的name属性不等于'keleyicom'的input元素
+        $.ajax({
+            type: 'GET',
+            url: "{:url('index/Orders/depot_list')}",
+            data: {
+                name: name,
+                page: GetQueryString('page'),
+                'start_query':GetQueryString('start_query')},
+            dataType: 'json',
+            success: function (r) {
+                console.log(r);
+                return false;
+                layer.msg(r.msg);
+                // setTimeout(function () {
+                //     window.location.reload();
+                // }, 1500);
+            },
+            error: function (r) {
+                layer.msg('审核失败!', {icon: 0, time: 1000});
+            },
+        });
+
+    }
+
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
+
+    // setInterval(function () {
+    //     depot_list();
+    // }, 1000);
+    depot_list();
+</script>
+</body>
+</html>

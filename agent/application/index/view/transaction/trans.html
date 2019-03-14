@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="public/meta" /}
+    {include file="public/link" /}
+    <style>
+        .content {
+            width: 300px;
+            overflow: hidden; /*超出隐藏*/
+            text-overflow: ellipsis; /*超出文本设置为...*/
+            display: -webkit-box; /*将div1转换为盒子模型*/
+            -webkit-line-clamp: 2; /*设置div1的文本为2行*/
+            -webkit-box-orient: vertical; /*从顶部向底部垂直布置子元素*/
+            white-space: initial;
+        }
+    </style>
+</head>
+<body data-type="index" class="theme-white">
+<div class="am-g tpl-g">
+    {include file="public/header" /}
+    {include file="public/left" /}
+    {include file="public/content_top" /}
+    <ol class="am-breadcrumb">
+        <li><a href="../home/index.html" class="am-icon-home">首页</a></li>
+        <li><a href="#">参数管理</a></li>
+        <li class="am-active">品种管理</li>
+        <li><a href="trans_edit.html?a={$a}&b={$b}">添加品种</a></li>
+    </ol>
+    <div class="am-form-inline" role="form">
+        <span>日期范围：</span>
+        <div class="am-form-group ">
+            <input type="text" class="am-form-field am-input-sm" name="start" placeholder="请选择起始日期"
+                   data-am-datepicker onfocus="this.blur()" value="{$arr.start_query}"/>
+        </div>
+        <div class="am-form-group ">
+            <input type="text" class="am-form-field am-input-sm" name="end" placeholder="请选择结束日期" data-am-datepicker
+                   onfocus="this.blur()" value="{$arr.end_query}"/>
+        </div>
+        <div class="am-form-group ">
+            <input type="text" id="name" class="am-form-field am-input-sm" placeholder="请输入名称或代码"
+                   value="{$arr.name}"/>
+        </div>
+        <button type="button" class="am-btn am-btn-primary am-btn-sm" onclick="info_query()">查询</button>
+        <button type="button" class="am-btn am-btn-warning am-btn-sm" onclick="clear_query()">清除查询</button>
+        <!-- ,array('excel'=>1,'name'=>$name,'start_query'=>$start_query,'end_query'=>$end_query)) -->
+        <!--<a href="{:url('index')}?excel=1" class="am-btn am-btn-warning am-btn-sm">导出Excel表格</a>-->
+        <!-- <button type="button" class="am-btn am-btn-primary am-btn-sm" style="margin-left: 200px: " onclick="Derive_excel()">导出Excel表格</button> -->
+    </div>
+    <div class="widget am-cf">
+        <hr data-am-widget="divider" class="am-divider am-divider-default"/>
+        <div class="widget-body widget-body-lg am-fr">
+            <div class="am-scrollable-horizontal">
+                <table class="{$table}">
+                    <thead>
+                    <tr>
+                        <th>品种名称</th>
+                        <th>品种代码</th>
+                        <th>交易币种</th>
+                        <th>每手保证金</th>
+                        <th>预警保证金</th>
+                        <th>平仓保证金</th>
+                        <th>留仓保证金倍数</th>
+                        <th>买入手续费</th>
+                        <th>卖出手续费</th>
+                        <th>仓息/手/天</th>
+                        <th>夏令时</th>
+                        <th>冬令时</th>
+                        <th>夏季强平时间</th>
+                        <th>冬季强平时间</th>
+                        <th>波动点位</th>
+                        <th>波动价格</th>
+                        <th>合约价值</th>
+                        <th>合约单位</th>
+                        <th>合约月份</th>
+                        <!--<th>备注信息</th>-->
+                        <th>交易状态</th>
+                        <th>添加时间</th>
+
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {volist name="list" id="vo" empty="$empty"}
+                    <tr>
+                        <td>{$vo.name}</td>
+                        <td>{$vo.code}</td>
+                        <td>{$vo.currencys.name}    </td>
+                        <td>{$vo.bond}</td>
+                        <td>{$vo.warn}</td>
+                        <td>{$vo.close}</td>
+                        <td>{$vo.storage}</td>
+                        <td>{$vo.buy_fee}</td>
+                        <td>{$vo.sell_fee}</td>
+                        <td>{$vo.interest}</td>
+                        <td>{$vo.summer}</td>
+                        <td>{$vo.winter}</td>
+                        <td>{$vo.summer_close}</td>
+                        <td>{$vo.winter_close}</td>
+                        <td>{$vo.wave_spot}</td>
+                        <td>{$vo.wave_price}</td>
+                        <td>{$vo.value}</td>
+                        <td>{$vo.unit}</td>
+                        <td class="content">{$vo.month}</td>
+                        <!--<td>{$vo.remark}</td>-->
+                        <td>{$vo.status_text}</td>
+                        <td>{$vo.time}</td>
+                        <!--<td>{$vo.up_stop}</td>-->
+                        <!--<td>{$vo.down_stop}</td>-->
+                        <td>
+                            <a href="trans_edit?id={$vo.id}&a={$a}&b={$b}"
+                               class="am-btn am-btn-success am-btn-xs">信息修改</a>
+                        </td>
+                    </tr>
+                    {/volist}
+                    </tbody>
+                </table>
+                <div class="dataTables_info" id="DataTables_Table_1_info">
+                    <div class="am-pagination-left">{$page}</div>
+                </div>
+            </div>
+        </div>
+        {include file="public/content_foot" /}
+    </div>
+    <form action="{:url('Transaction/trans')}" class="am-form-inline" role="form" id="form" method="get">
+        <input type="hidden" name="name"/>
+        <input type="hidden" name="start_query">
+        <input type="hidden" name="end_query">
+        <input type="hidden" name="status">
+        <input type="hidden" name="page">
+        <input type="hidden" name="a" value="{$a}">
+        <input type="hidden" name="b" value="{$b}">
+    </form>
+    {include file="public/foot" /}
+    <script type="text/javascript">
+        function sub(id) {
+            $.ajax({
+                url: "{:url('Users/edit')}",
+                type: "post",
+                data: {id: id},
+                success: function (r) {
+                    if (r['code'] == 1) {
+                        layer.msg(r['msg']);
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 1500);
+                    } else {
+                        layer.msg(r['msg']);
+                    }
+                }
+            });
+        }
+
+        function mold(id) {
+            $.ajax({
+                url: "{:url('Users/mold')}",
+                type: "post",
+                data: {id: id},
+                success: function (r) {
+                    if (r == 1) {
+                        alert_open('操作成功');
+                    } else {
+                        alert_msg('操作失败');
+                    }
+                }
+            });
+        }
+
+        function Derive_excel() {
+            $.ajax({
+                url: "{:url('Users/index')}",
+                type: "post",
+                data: {excel: 1},
+                success: function (r) {
+
+                }
+            });
+        }
+    </script>
+</div>
+</body>
+</html>

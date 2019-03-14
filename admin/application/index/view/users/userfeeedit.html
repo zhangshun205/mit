@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="public/meta" /}
+    {include file="public/link" /}
+    {include file="public/form" /}
+</head>
+<body data-type="index" class="theme-white">
+<div class="am-g tpl-g">
+    {include file="public/header" /}
+    {include file="public/left" /}
+    {include file="public/content_top" /}
+    <ol class="am-breadcrumb" style="    margin-bottom: 0;">
+        <li><a href="../home/index.html" class="am-icon-home">首页</a></li>
+        <li><a href="../users/index.html?a={$a}&b={$b}">用户管理</a></li>
+        <li class="am-active">添加手续费设置</li>
+    </ol>
+    <div class="widget am-cf">
+        <form class="am-cf" id="user_fee_form" onsubmit="return false">
+            <div class="am-panel am-panel-primary">
+                <div class="am-panel-hd">基础信息</div>
+                <div class="am-form-group">
+                    <span class="s1">用户信息：</span>
+                    <label class="am-form-label">
+                        <input type="text" readonly class="am-form-field am-input-sm" placeholder="请输入用户名"
+                               value="{$user['name']}-{$user['phone']}"/>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">期货品种：</span>
+                    <label class="am-form-label">
+                        <select name="future" title="" class="am-form-field am-input-sm">
+                            {volist name="futures" id="vo" empty=""}
+                            <option value="{$vo.id}" class="am-form-field am-input-sm">{$vo.name}</option>
+                            {/volist}
+                        </select>
+                    </label>
+                </div>
+
+                <div class="am-form-group">
+                    <span class="s1">开仓手续费:</span>
+                    <label class="am-form-label">
+                        <input type="text" id="buy_fee" class="am-form-field am-input-sm" name="buy_fee"
+                               value="{$list['buy_fee']}" placeholder="请输入开仓手续费"/>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">平仓手续费:</span>
+                    <label class="am-form-label">
+                        <input type="text" id="sell_fee" class="am-form-field am-input-sm" name="sell_fee"
+                               value="{$list['sell_fee']}" placeholder="请输入平仓手续费"/>
+                    </label>
+                </div>
+
+                <input type="hidden" value="{$list.id}" name="id">
+                <input type="hidden" value="{$uid}" name="uid">
+                <div class="am-panel-bd" style="padding-bottom: 1rem;margin-left: 13rem">
+                    <button type="submit" class="am-btn am-btn-primary am-btn-sm" onclick="sub()">确定</button>
+                    <a href="userFee.html?a={$a}&b={$b}&uid={$uid}" class="am-btn am-btn-secondary am-btn-sm">返回</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="public/foot" /}
+<script type="text/javascript">
+    function sub() {
+        var arr = parseFormJson("#user_fee_form");
+        $.ajax({
+            url: "{:url('Users/userFeeEdits')}",
+            data: {arr: arr},
+            type: "post",
+            success: function (r) {
+                if (r['code'] == 1) {
+                    alert_msg(r['msg']);
+                    setTimeout(function () {
+                        // window.location.href = "{:url('Users/userFee',array('uid'=>$uid,'a'=>$a,'b'=>$b))}";
+                        window.location.href = "";
+                    }, 1500);
+                } else {
+                    alert_msg(r['msg']);
+                }
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

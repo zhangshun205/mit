@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta content="telephone=no" name="format-detection" />
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="{dede:global.cfg_templets_skin/}/style/reset.css">
+		<link rel="stylesheet" href="{dede:global.cfg_templets_skin/}/style/index.css">
+		<link rel="stylesheet" href="{dede:global.cfg_templets_skin/}/style/head.css">
+		<link rel="stylesheet" href="{dede:global.cfg_templets_skin/}/style/foot.css">
+		<link rel="stylesheet" href="{dede:global.cfg_templets_skin/}/style/css/style.css" type="text/css" />
+		<script type='text/javascript' src='{dede:global.cfg_templets_skin/}/style/js/modernizr.min.js'></script>
+		<script type='text/javascript'>
+			var CSSettings = {
+				"pluginPath": "{dede:global.cfg_templets_skin/}/style/module"
+			};
+		</script>
+		<script type='text/javascript' src='{dede:global.cfg_templets_skin/}/style/js/cute.slider.js'></script>
+		<script type='text/javascript' src='{dede:global.cfg_templets_skin/}/style/js/cute.transitions.all.js'></script>
+		<title>汉诺国际官网</title>
+	</head>
+
+	<body>
+		{dede:include filename="head.htm"/}
+		<div style="clear:both"></div>
+		<banner>
+			<div class="c-860 c-demoslider">
+				<div id="cuteslider_3_wrapper" class="cs-circleslight">
+					<div id="cuteslider_3" class="cute-slider" data-width="960" data-height="500" data-overpause="true">
+						<ul data-type="slides">
+							<li data-delay="5" data-src="5" data-trans3d="tr6,tr17,tr22,tr23,tr29,tr27,tr32,tr34,tr35,tr53,tr54,tr62,tr63,tr4,tr13,tr45" data-trans2d="tr3,tr8,tr12,tr19,tr22,tr25,tr27,tr29,tr31,tr34,tr35,tr38,tr39,tr41"> <img src="{dede:global.cfg_templets_skin/}/images/001.jpg" /> </li>
+							<li data-delay="5" data-src="5" data-trans3d="tr6,tr17,tr22,tr23,tr26,tr27,tr29,tr32,tr34,tr35,tr53,tr54,tr62,tr63,tr4,tr13" data-trans2d="tr3,tr8,tr12,tr19,tr22,tr25,tr27,tr29,tr31,tr34,tr35,tr38,tr39,tr41"> <img src="{dede:global.cfg_templets_skin/}/images/blank.png" data-src="{dede:global.cfg_templets_skin/}/images/002.jpg" /> </li>
+							<li data-delay="5" data-src="5" data-trans3d="tr6,tr17,tr22,tr23,tr26,tr27,tr29,tr32,tr34,tr35,tr53,tr54,tr62,tr63,tr4,tr13" data-trans2d="tr3,tr8,tr12,tr19,tr22,tr25,tr27,tr29,tr31,tr34,tr35,tr38,tr41"> <img src="{dede:global.cfg_templets_skin/}/images/blank.png" data-src="{dede:global.cfg_templets_skin/}/images/001.jpg" /> </li>
+							<li data-delay="5" data-src="5" data-trans3d="tr6,tr17,tr22,tr23,tr26,tr27,tr29,tr32,tr34,tr35,tr53,tr54,tr62,tr63,tr4,tr13" data-trans2d="tr3,tr8,tr12,tr19,tr22,tr25,tr27,tr29,tr31,tr34,tr35,tr38,tr39,tr41"> <img src="{dede:global.cfg_templets_skin/}/images/blank.png" data-src="{dede:global.cfg_templets_skin/}/images/002.jpg" /> </li>
+							<li data-delay="5" data-src="5" data-trans3d="tr6,tr17,tr22,tr23,tr26,tr27,tr29,tr32,tr34,tr35,tr53,tr54,tr62,tr63,tr4,tr13" data-trans2d="tr3,tr8,tr12,tr19,tr22,tr25,tr27,tr29,tr31,tr34,tr35,tr38,tr39,tr41"> <img src="{dede:global.cfg_templets_skin/}/images/blank.png" data-src="{dede:global.cfg_templets_skin/}/images/001.jpg" /> </li>
+							<li data-delay="5" data-src="5" data-trans3d="tr6,tr17,tr22,tr23,tr26,tr27,tr29,tr32,tr34,tr35,tr53,tr54,tr62,tr63,tr4,tr13" data-trans2d="tr3,tr8,tr12,tr19,tr22,tr25,tr27,tr29,tr31,tr34,tr35,tr38,tr39,tr41"> <img src="{dede:global.cfg_templets_skin/}/images/blank.png" data-src="{dede:global.cfg_templets_skin/}/images/002.jpg" /> </li>
+						</ul>
+						<ul data-type="controls">
+							<li data-type="previous"></li>
+							<li data-type="next"> </li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</banner>
+		<main>
+			<div class="news">
+				<div class="newsleft">
+					<section class="newstitle">新闻中心</section>
+					<section><img src="{dede:global.cfg_templets_skin/}/images/AD0I4oLBBRACGAAgy5qSwAUo6q_vjgUwzwE4fQ.jpg" alt=""></section>
+					<section class="title">理财的这四种方式</section>
+					<section class="cont color1">如何快速积攒财富？很多人一生忙碌没有收获，是因为没有好的方案</section>
+				</div>
+				<div class="newscenter"> {dede:arclist row='2' orderby='pubdate' idlist="19,18"}
+					<div class="color1">
+						<section>
+							<a href="[field:arcurl/]">[field:title/]</a>
+						</section>
+						<section>[field:pubdate function="MyDate('Y-m-d',@me)"/]</section>
+						<section> [field:description/] </section>
+					</div> {/dede:arclist} </div>
+				<div class="newsright"> {dede:arclist row='2' orderby='pubdate' idlist="17,16"}
+					<div class="color1">
+						<section>
+							<a href="[field:arcurl/]">[field:title/]</a>
+						</section>
+						<section>[field:pubdate function="MyDate('Y-m-d',@me)"/]</section>
+						<section> [field:description/] </section>
+					</div> {/dede:arclist} </div>
+			</div>
+			<div class="pinpai">
+				<div class="pinpaitop"><img src="{dede:global.cfg_templets_skin/}/images/AD0I4oLBBRACGAAg2LKSwAUooLq4pQEw4AM4gwI.jpg" alt=""></div>
+				<div class="pinpaitop2">
+					<section>塑造生态价值品牌</section>
+					<section>以“做一家负责任的保险公司”为使命</section>
+					<section> 以“诚信天下，稳健一生，追求卓越”为企业核心价值观，以“推动和实现可 持续的价值增长”为经营理念，不断为客户、股东、员 工、社会和利益相关者创造价值，为社会和谐做出贡献！ </section>
+				</div>
+				<div style="clear:both"></div>
+				<div class="pinpaibott">
+					<div>
+						<section><img src="{dede:global.cfg_templets_skin/}/images/1.png" alt=""></section>
+						<section>灵活自由，投资安全</section>
+					</div>
+					<div>
+						<section><img src="{dede:global.cfg_templets_skin/}/images/2.png" alt=""></section>
+						<section>平台实力雄厚，收益更高</section>
+					</div>
+					<div>
+						<section><img src="{dede:global.cfg_templets_skin/}/images/3.png" alt=""></section>
+						<section> AAA级信用企业，拥有优质团队，智能资金分散，资金全透明 </section>
+					</div>
+				</div>
+			</div>
+			<div style="clear:both"></div>
+			<div class="marketanalysis">
+				<div class="newsleft">
+					<section class="newstitle">市场分析</section>
+					<ul class="marketlist"> {dede:arclist row='5' orderby='pubdate' idlist="15,14,13,12,11"}
+						<li>
+							<a href="[field:arcurl/]">[field:title/]</a>
+						</li> {/dede:arclist} </ul>
+				</div>
+				<div style="width:245px"><img src="{dede:global.cfg_templets_skin/}/images/AD0I4oLBBRACGAAg0sWSwAUogIeTnAMw1QE49QE.jpg" alt=""></div> {dede:arclist row='1' orderby='pubdate' idlist="10"}
+				<div style="width:450px">
+					<section class="title2">
+						<a href="[field:arcurl/]">[field:title/]</a>
+					</section>
+					<section class="color1 lineHegiht">[field:description/] </section>
+					<section class="look">
+						<a href="[field:arcurl/]">查看详情</a>
+					</section>
+				</div> {/dede:arclist} </div>
+			<div style="clear:both"></div>
+			<div class="Financialinformation">
+				<div class="Financialinleft">
+					<div class="color2"> 理财新资讯 </div>
+					<ul> {dede:arclist row='3' orderby='pubdate' idlist="8,9,7" titlelen='30'}
+						<li>
+							<a href=""><span><a href="[field:arcurl/]">[field:title/]</a></span><span style="float:right;color:#fff">[field:pubdate function="MyDate('Y-m-d',@me)"/]</span></a>
+						</li> {/dede:arclist} </ul>
+				</div>
+				<div class="Financialinright"><img src="{dede:global.cfg_templets_skin/}/images/AD0I4oLBBRACGAAg6JqWwAUoyZHkigUw_gE49QE.jpg" alt=""></div>
+				<div class="Financialinright"><img src="{dede:global.cfg_templets_skin/}/images/AD0I4oLBBRACGAAg8ZqWwAUo-rLHrAMw5gE49QE.jpg" alt=""></div>
+			</div>
+			<div style="clear:both"></div>
+			<div class="worktime">
+				<div class="work">
+					<div>工作时间</div>
+					<div>{dede:global.cfg_worktime/}</div>
+				</div>
+				<div class="contactway">
+					<div>联系方式</div>
+					<!--<div>QQ:{dede:global.cfg_QQ/} 技术QQ:{dede:global.cfg_email/}</div>-->
+					<div>QQ:{dede:global.cfg_QQ/}</div>
+				</div>
+			</div> {dede:include filename="footer.htm"/} </main>
+		<script src="{dede:global.cfg_templets_skin/}/style/jquery.min.js"></script>
+		<script src="{dede:global.cfg_templets_skin/}/style/index.js"></script>
+		<script type="text/javascript">
+			var cuteslider3 = new Cute.Slider();
+			cuteslider3.setup("cuteslider_3", "cuteslider_3_wrapper", "{dede:global.cfg_templets_skin/}/style/css/slider-style.css");
+			cuteslider3.api.addEventListener(Cute.SliderEvent.CHANGE_START, function(event) {});
+			cuteslider3.api.addEventListener(Cute.SliderEvent.CHANGE_END, function(event) {});
+			cuteslider3.api.addEventListener(Cute.SliderEvent.WATING, function(event) {});
+			cuteslider3.api.addEventListener(Cute.SliderEvent.CHANGE_NEXT_SLIDE, function(event) {});
+			cuteslider3.api.addEventListener(Cute.SliderEvent.WATING_FOR_NEXT, function(event) {});
+		</script>
+	</body>
+
+</html>

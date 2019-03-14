@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="public/meta" /}
+    {include file="public/link" /}
+    {include file="public/form" /}
+</head>
+<body data-type="index" class="theme-white">
+<div class="am-g tpl-g">
+    {include file="public/header" /}
+    {include file="public/left" /}
+    {include file="public/content_top" /}
+    <ol class="am-breadcrumb" style="    margin-bottom: 0;">
+        <li><a href="../home/index.html" class="am-icon-home">首页</a></li>
+        <li><a href="../users/index.html?a={$a}&b={$b}">用户管理</a></li>
+        <li class="am-active">账户设置</li>
+    </ol>
+    <div class="widget am-cf">
+        <form class="am-cf" id="user_edit_form" onsubmit="return false">
+            <div class="am-panel am-panel-primary">
+                <div class="am-panel-hd">账户信息</div>
+                <div class="am-form-group">
+                    <span class="s1">余额:</span>
+                    <label class="am-form-label">
+                        <input type="text" disabled id="phone" class="am-form-field am-input-sm" name="phone"
+                               value="{$account}"/>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">增加金额：　</span>
+                    <label class="am-form-label">
+                        <input type="text" id="number" class="am-form-field am-input-sm" name="number" value=""
+                               placeholder="请输入添加金额"/>*正数为加钱,负数为减钱
+                    </label>
+                </div>
+                <input hidden name="uid"  id="uid" value="{$uid}"/>
+                <div class="am-panel-bd" style="padding-bottom: 1rem;margin-left: 13rem">
+                    <button type="submit" class="am-btn am-btn-primary am-btn-sm" onclick="sub()">确定</button>
+                    <a href="index.html" class="am-btn am-btn-secondary am-btn-sm">返回</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="public/foot" /}
+<script type="text/javascript" src="/static/ajaxupload.js"></script>
+<script type="text/javascript">
+    function sub() {
+        var arr = parseFormJson("#user_edit_form");
+        if (arr.number == "") {
+            alert_msg('添加金额不能为空');
+            return false;
+        }  else {
+            $.ajax({
+                url: "{:url('Users/add_account')}",
+                data: {arr: arr},
+                type: "post",
+                success: function (r) {
+                    if (r['code'] == 1) {
+                        alert_msg(r['msg']);
+                        setTimeout(function () {
+                            window.location.href = "{:url('Users/index')}";
+                        }, 1500);
+                    } else {
+                        alert_msg(r['msg']);
+                    }
+                }
+            });
+        }
+    }
+</script>
+
+</body>
+</html>

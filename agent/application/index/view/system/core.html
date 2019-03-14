@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="public/meta" /}
+    {include file="public/link" /}
+    {include file="public/form" /}
+    <style>
+        .am-panel-hd {
+            margin-bottom: 10px;
+        }
+
+        .s1 {
+            margin: 10px 15px;
+        }
+    </style>
+</head>
+<body data-type="index" class="theme-white">
+<div class="am-g tpl-g">
+    {include file="public/header" /}
+    {include file="public/left" /}
+    {include file="public/content_top" /}
+    <ol class="am-breadcrumb" style="    margin-bottom: 0;">
+        <li><a href="../home/index.html" class="am-icon-home">首页</a></li>
+        <li><a href="closed.html">系统设置</a></li>
+        <li class="am-active">核心设置</li>
+    </ol>
+    <div class="widget am-cf">
+        <form class="am-cf" id="form" onsubmit="return false">
+            <div class="am-panel am-panel-primary">
+                <div class="am-panel-hd">基础信息</div>
+                <div class="am-form-group">
+                    <span class="s1">出入金汇率：</span>
+                    <label class="am-form-label">
+                        <input type="text" class="am-form-field am-input-sm" name="exchange_rate"
+                               value="{$list['exchange_rate']}"/>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">佣金汇率：</span>
+                    <label class="am-form-label">
+                        <input type="text" class="am-form-field am-input-sm" name="bonus_rate"
+                               value="{$list['bonus_rate']}"/>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">时令设置：</span>
+                    <label class="am-form-label">
+                        <select name="season" class="am-form-field am-input-sm">
+                            {switch name="$list['season']" }
+                            {case value="0" break="0"}
+                            <option selected value="1">冬时令</option>
+                            <option value="0">夏时令</option>
+                            {/case}
+                            {case value="0"}
+                            <option selected value="0">夏时令</option>
+                            <option value="1">冬时令</option>
+                            {/case}
+                            {default /}
+                            <option selected value="1">冬时令</option>
+                            <option value="0">夏时令</option>
+                            {/switch}
+                        </select>
+                    </label>
+                </div>
+                <input type="hidden" class="am-form-field am-input-sm" name="id" value="{$list['id']}"/>
+                <div class="am-panel-bd" style="padding-bottom: 1rem;margin-left: 13rem">
+                    <button type="submit" class="am-btn am-btn-primary am-btn-sm" onclick="sub()">确定</button>
+                    <a href="core.html?a={$a}&b={$b}" class="am-btn am-btn-secondary am-btn-sm">返回</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="public/foot" /}
+<script type="text/javascript">
+    function sub() {
+        var arr = parseFormJson("#form");
+        // console.log(arr);return false
+        $.ajax({
+            url: "{:url('System/core_edits')}",
+            data: {arr: arr},
+            type: "post",
+            success: function (r) {
+                if (r['code'] == 1) {
+                    alert_msg(r['msg'])
+                } else {
+                    alert_msg(r['msg']);
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

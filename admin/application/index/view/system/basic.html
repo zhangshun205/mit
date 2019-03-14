@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="public/meta" /}
+    {include file="public/link" /}
+    {include file="public/form" /}
+    <style>
+        .am-panel-hd {
+            margin-bottom: 10px;
+        }
+
+        .s1 {
+            margin: 10px 15px;
+        }
+    </style>
+</head>
+<body data-type="index" class="theme-white">
+<div class="am-g tpl-g">
+    {include file="public/header" /}
+    {include file="public/left" /}
+    {include file="public/content_top" /}
+    <ol class="am-breadcrumb" style="    margin-bottom: 0;">
+        <li><a href="../home/index.html" class="am-icon-home">首页</a></li>
+        <li><a href="core.html?a={$a}&b={$b}">系统设置</a></li>
+        <li class="am-active">基本设置</li>
+    </ol>
+    <div class="widget am-cf">
+        <form class="am-cf" id="form" onsubmit="return false">
+            <div class="am-panel am-panel-primary">
+                <div class="am-panel-hd">基础信息</div>
+                <div class="am-form-group">
+                    <span class="s1">网址名称：</span>
+                    <label class="am-form-label">
+                        <input type="text" class="am-form-field am-input-sm" name="name"
+                               value="{$list['name']}"/>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">公司名称：</span>
+                    <label class="am-form-label">
+                        <input type="text" class="am-form-field am-input-sm" name="company"
+                               value="{$list['company']}"/>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">公司地址：</span>
+                    <label class="am-form-label">
+                        <input type="text" class="am-form-field am-input-sm" name="address"
+                               value="{$list['address']}"/>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">版权信息：</span>
+                    <label class="am-form-label">
+                        <input type="text" class="am-form-field am-input-sm" name="copyright"
+                               value="{$list['copyright']}"/>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">版本信息：</span>
+                    <label class="am-form-label">
+                        <input type="text" class="am-form-field am-input-sm" name="version"
+                               value="{$list['version']}"/>
+                    </label>
+                </div><div class="am-form-group">
+                    <span class="s1">官网地址：</span>
+                    <label class="am-form-label">
+                        <input type="text" class="am-form-field am-input-sm" name="web_url"
+                               value="{$list['web_url']}"/>
+                    </label>
+                </div>
+                <input type="hidden" class="am-form-field am-input-sm" name="id" value="{$list['id']}"/>
+                <div class="am-panel-bd" style="padding-bottom: 1rem;margin-left: 13rem">
+                    <button type="submit" class="am-btn am-btn-primary am-btn-sm" onclick="sub()">确定</button>
+                    <a href="core.html?a={$a}&b={$b}" class="am-btn am-btn-secondary am-btn-sm">返回</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="public/foot" /}
+<script type="text/javascript">
+    function sub() {
+        var arr = parseFormJson("#form");
+        // console.log(arr);return false
+        $.ajax({
+            url: "{:url('System/basic_edits')}",
+            data: {arr: arr},
+            type: "post",
+            success: function (r) {
+                if (r['code'] == 1) {
+                    alert_msg(r['msg'])
+                } else {
+                    alert_msg(r['msg']);
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

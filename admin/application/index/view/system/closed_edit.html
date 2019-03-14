@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="public/meta" /}
+    {include file="public/link" /}
+    {include file="public/form" /}
+    <style>
+        .am-panel-hd {
+            margin-bottom: 10px;
+        }
+
+        .s1 {
+            margin: 10px 15px;
+        }
+    </style>
+</head>
+<body data-type="index" class="theme-white">
+<div class="am-g tpl-g">
+    {include file="public/header" /}
+    {include file="public/left" /}
+    {include file="public/content_top" /}
+    <ol class="am-breadcrumb" style="    margin-bottom: 0;">
+        <li><a href="../home/index.html" class="am-icon-home">首页</a></li>
+        <li><a href="closed.html">休市管理</a></li>
+        <li class="am-active">休市</li>
+    </ol>
+    <div class="widget am-cf">
+        <form class="am-cf" id="form" onsubmit="return false">
+            <div class="am-panel am-panel-primary">
+                <div class="am-panel-hd">基础信息</div>
+                <div class="am-form-group">
+                    <span class="s1">品　种：　　</span>
+                    {if condition="$list['exchange']"}
+                    <label class="am-form-label">
+                        <input type="hidden" class="am-form-field am-input-sm" name="exchange"
+                               value="{$list['exchange']['id']}"/>
+                        <input type="text" class="am-form-field am-input-sm" readonly
+                               value="{$list['exchange']['name']}"/>
+                    </label>
+                    {else /}
+                    <label class="am-form-label">
+                    <select name="future" class="am-form-field am-input-sm">
+                        {if condition="$list != ''"}
+                        {volist name="variety" id="vo" empty="$empty"}
+                        {if condition="$vo['id'] == $list['future']"}
+                        <option selected value="{$vo.id}" class="am-form-field am-input-sm">{$vo.name}</option>
+                        {else /}
+                        <option value="{$vo.id}" class="am-form-field am-input-sm">{$vo.name}</option>
+                        {/if}
+                        {/volist}
+                        {else /}
+                        {volist name="exchange" id="vo" empty="$empty"}
+                        <option value="{$vo.id}" class="am-form-field am-input-sm">{$vo.name}</option>
+                        {/volist}
+                        {/if}
+                    </select>
+                </label>
+                    {/if}
+
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">休市备注：</span>
+                    <label class="am-form-label">
+                        <input type="text" class="am-form-field am-input-sm" name="explain"
+                               value="{$list['explain']}"/>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">休市开始时间：</span>
+                    <label class="am-form-label">
+                        <input type="date" class="am-form-field am-input-sm" name="start_time"
+                               value="{$list['start_time']}"/>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">休市结束时间：</span>
+                    <label class="am-form-label">
+                        <input type="date" class="am-form-field am-input-sm" name="end_time"
+                               value="{$list['end_time']}"/>
+                    </label>
+                </div>
+                <div class="am-form-group">
+                    <span class="s1">状态：</span>
+                    <label class="am-form-label">
+                        <select name="status" class="am-form-field am-input-sm">
+                            {switch name="$list['status']" }
+                            {case value="0" break="0"}
+                            <option selected value="1">启用</option>
+                            <option value="0">禁用</option>
+                            {/case}
+                            {case value="0"}
+                            <option selected value="0">禁用</option>
+                            <option value="1">启用</option>
+                            {/case}
+                            {default /}
+                            <option selected value="1">启用</option>
+                            <option value="0">禁用</option>
+                            {/switch}
+                        </select>
+                    </label>
+                </div>
+                <input type="hidden" class="am-form-field am-input-sm" name="id" value="{$list['id']}"/>
+                <div class="am-panel-bd" style="padding-bottom: 1rem;margin-left: 13rem">
+                    <button type="submit" class="am-btn am-btn-primary am-btn-sm" onclick="sub()">确定</button>
+                    <a href="closed.html?a={$a}&b={$b}" class="am-btn am-btn-secondary am-btn-sm">返回</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="public/foot" /}
+<script type="text/javascript">
+    function sub() {
+        var arr = parseFormJson("#form");
+        // console.log(arr);return false
+        $.ajax({
+            url: "{:url('System/closed_edits')}",
+            data: {arr: arr},
+            type: "post",
+            success: function (r) {
+                if (r['code'] == 1) {
+                    alert_msg(r['msg'])
+                } else {
+                    alert_msg(r['msg']);
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

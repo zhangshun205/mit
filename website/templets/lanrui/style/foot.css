@@ -1,0 +1,16 @@
+.foot{
+    width: 960px;
+    margin: 0 auto;
+    text-align: center;
+}
+.foot div{
+    width: 320px;
+    float: left;
+    margin-top: 25px;
+}
+.foot div section{
+    width: 80px;
+    margin: 0 auto;
+    margin-top: 20px;
+    /*text-align: center;*/
+}

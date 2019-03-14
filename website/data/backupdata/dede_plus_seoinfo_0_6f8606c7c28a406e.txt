@@ -1,0 +1,3 @@
+INSERT INTO `dede_plus_seoinfo` VALUES('1','1499679997','0','0','0','0','0');
+INSERT INTO `dede_plus_seoinfo` VALUES('2','1499753534','0','0','0','0','0');
+INSERT INTO `dede_plus_seoinfo` VALUES('3','1499841854','0','0','0','0','0');

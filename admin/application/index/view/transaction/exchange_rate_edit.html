@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="public/meta" /}
+    {include file="public/link" /}
+    <style>
+        .am-input-sm {
+            font-size: 1.4rem !important;
+            width: 220px;
+        }
+    </style>
+</head>
+<body data-type="index" class="theme-white">
+<div class="am-g tpl-g">
+    {include file="public/header" /}
+    {include file="public/left" /}
+    {include file="public/content_top" /}
+    <ol class="am-breadcrumb">
+        <li><a href="../home/index.html" class="am-icon-home">首页</a></li>
+        <li><a href="#">参数管理</a></li>
+        <li class="am-active">添加/修改汇率</li>
+    </ol>
+    <form class="am-cf" id="form" onsubmit="return false">
+        <div class="widget am-cf">
+            <hr data-am-widget="divider" class="am-divider am-divider-default"/>
+            <div class="am-form-group">
+                <span class="s1">汇率名称：</span>
+                <label class="am-form-label">
+                    <input type="text" id="name" class="am-form-field am-input-sm" name="name"
+                           value="{$list['name']?$list['name']:''}"/>
+                </label>
+            </div>
+            <div class="am-form-group">
+                <span class="s1">兑换货币：</span>
+                <label class="am-form-label">
+                    <input type="text" id="base" class="am-form-field am-input-sm" name="base"
+                           value="{$list['base']}"/>
+                </label>
+            </div>
+            <div class="am-form-group">
+                <span class="s1">汇&nbsp&nbsp率：&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                <label class="am-form-label">
+                    <input type="text" class="am-form-field am-input-sm" name="ratio" value="{$list['ratio']}"/>
+                </label>
+            </div>
+            <div class="am-form-group">
+                <span class="s1">是否展示：</span>
+                <!--0 不可交易 1 可交易 2已删除-->
+                <label class="am-form-label">
+                    <select name="status" class="am-form-field am-input-sm">
+                        {switch name="$list['status']" }
+                        {case value="0"}
+                        <option selected value="0">不可展示</option>
+                        <option value="1">可展示</option>
+                        {/case}
+                        {case value="1" }
+                        <option selected value="1">可展示</option>
+                        <option value="0">不可展示</option>
+                        {/case}
+                        {default /}
+                        <option selected value="1">可展示</option>
+                        <option value="0">不可展示</option>
+                        {/switch}
+                    </select>
+                </label>
+            </div>
+            <input type="hidden" name="id" value="{$list['id']?$list['id']:'0'}">
+            <div class="am-panel-bd" style="padding-bottom: 1rem;margin-left: 13rem">
+                <button type="submit" class="am-btn am-btn-primary am-btn-sm" onclick="sub()">确定</button>
+                <a href="exchange_rate.html?a={$a}&b={$b}" class="am-btn am-btn-secondary am-btn-sm">返回</a>
+            </div>
+        </div>
+        {include file="public/content_foot" /}
+    </form>
+</div>
+{include file="public/foot" /}
+<script type="text/javascript">
+    function sub() {
+        var arr = parseFormJson("#form");
+        $.ajax({
+            url: "{:url('Transaction/exchange_rate_edits')}",
+            data: {arr: arr},
+            type: "post",
+            success: function (r) {
+                if (r['code'] == 1) {
+                    alert_msg(r['msg']);
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 1500);
+                } else {
+                    alert_msg(r['msg']);
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

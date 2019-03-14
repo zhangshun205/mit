@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="public/meta" /}
+    {include file="public/link" /}
+    <style>
+        .am-form-group {
+            margin: 20px;
+        }
+
+        .one-two {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .one {
+            flex: 1;
+        }
+
+        .two {
+            flex: 1;
+        }
+
+        .am-panel-bd {
+            clear: right;
+        }
+    </style>
+</head>
+<body data-type="index" class="theme-white">
+<div class="am-g tpl-g">
+    {include file="public/header" /}
+    {include file="public/left" /}
+    {include file="public/content_top" /}
+    <ol class="am-breadcrumb">
+        <li><a href="../home/index.html" class="am-icon-home">首页</a></li>
+        <li><a href="#">参数管理</a></li>
+        <li class="am-active">修改品种</li>
+    </ol>
+    <form class="am-cf" id="form" onsubmit="return false">
+        <div class="widget am-cf">
+            <hr data-am-widget="divider" class="am-divider am-divider-default"/>
+            <div class="am-panel am-panel-primary">
+                <div class="am-panel-hd">修改品种信息</div>
+                <br>
+                <div class="one-two">
+
+                    <div class="one">
+                        <div class="am-form-group">
+                            <span class="s1">品种名称：　</span>
+                            <label class="am-form-label">
+                                <input type="text" placeholder="请输入品种名称" id="name" class="am-form-field am-input-sm"
+                                       name="name"
+                                       value="{$list['name']}"/>
+                            </label>
+                        </div>
+                        <div class="am-form-group">
+                            <span class="s1">品种代码：　</span>
+                            <label class="am-form-label">
+                                <input type="text" id="code" placeholder="请输入品种代码" class="am-form-field am-input-sm"
+                                       name="code"
+                                       value="{$list['code']}"/>
+                            </label>
+                        </div>
+                        <div class="am-form-group">
+                            <span class="s1">交易币种：　</span>
+                            <input type="hidden" name="id" value="{$list.id??''}"/>
+                            <label class="am-form-label">
+                                <select name="currency" id="currency" title="" class="am-form-field am-input-sm">
+                                    {volist name="rete" id="vo" empty="$empty"}
+                                    {if condition="$vo['id'] == $list['currency']"}
+                                    <option selected value="{$vo.id}" class="am-form-field am-input-sm">{$vo.name}
+                                    </option>
+                                    {else /}
+                                    <option value="{$vo.id}" class="am-form-field am-input-sm">{$vo.name}</option>
+                                    {/if}
+                                    {/volist}
+                                </select>
+                            </label>
+                            <span style="color: red">(<--点击选择币种)</span>
+                        </div>
+                        <div class="am-form-group">
+                            <span class="s1">每手保证金：</span>
+                            <label class="am-form-label">
+                                <input type="text" placeholder="请输入每手保证金" id="bond" class="am-form-field am-input-sm"
+                                       name="bond"
+                                       value="{$list['bond']}"/>
+                            </label>
+                        </div>
+                        <div class="am-form-group">
+                            <span class="s1">预警保证金：</span>
+                            <label class="am-form-label">
+                                <input type="text" id="warn" placeholder="请输入预警保证金" class="am-form-field am-input-sm"
+                                       name="warn"
+                                       value="{$list['warn']}"/>
+                            </label>
+                        </div>
+                        <div class="am-form-group">
+                            <span class="s1">平仓保证金：</span>
+                            <label class="am-form-label">
+                                <input type="text" id="close" placeholder="请输入平仓保证金" class="am-form-field am-input-sm"
+                                       name="close"
+                                       value="{$list['close']}"/>
+                            </label>
+                        </div>
+                        <div class="am-form-group">
+                            <span class="s1">留仓保证金倍数：</span>
+                            <label class="am-form-label">
+                                <input type="text" id="storage" placeholder="请输入留仓保证金倍数"
+                                       class="am-form-field am-input-sm" name="storage"
+                                       value="{$list['storage']}"/>
+                            </label>
+                        </div>
+                        <div class="am-form-group">
+                            <span class="s1">买入手续费：</span>
+                            <label class="am-form-label">
+                                <input type="text" id="buy_fee" placeholder="请输入买入手续费" class="am-form-field am-input-sm"
+                                       name="buy_fee"
+                                       value="{$list['buy_fee']}"/>
+                            </label>
+                        </div>
+                        <div class="am-form-group">
+                            <span class="s1">卖出手续费：</span>
+                            <label class="am-form-label">
+                                <input type="text" id="sell_fee" placeholder="请输入卖出手续费"
+                                       class="am-form-field am-input-sm" name="sell_fee"
+                                       value="{$list['sell_fee']}"/>
+                            </label>
+                        </div>
+
+                        <!--<div class="am-form-group">-->
+                            <!--<span class="s1">夏令时：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>-->
+                            <!--<label class="am-form-label">-->
+                                <!--<input type="time" class="am-form-field am-input-sm" name="summer1"-->
+                                       <!--value="{$list['summer1']}">-->
+                                <!--<input type="time" class="am-form-field am-input-sm " name="summer2"-->
+                                       <!--value="{$list['summer2']}">-->
+                            <!--</label>-->
+                        <!--</div>-->
+                        <!--<div class="am-form-group">-->
+                            <!--<span class="s1">冬时令：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>-->
+                            <!--<label class="am-form-label">-->
+                                <!--<input type="time" class="am-form-field am-input-sm" name="winter1"-->
+                                       <!--value="{$list['winter1']}">-->
+                                <!--<input type="time" class="am-form-field am-input-sm" name="winter2"-->
+                                       <!--value="{$list['winter2']}">-->
+                            <!--</label>-->
+                        <!--</div>-->
+                    </div>
+                    <div class="two">
+                        <div class="am-form-group">
+                            <span class="s1">仓息(手/天)：</span>
+                            <label class="am-form-label">
+                                <input type="text" id="interest" placeholder="请输入仓息" class="am-form-field am-input-sm"
+                                       name="interest"
+                                       value="{$list['interest']}"/>
+                            </label>
+                        </div>
+                        <div class="am-form-group">
+                            <span class="s1">波动点位：</span>
+                            <label class="am-form-label">
+                                <input type="text" id="wave_spot" class="am-form-field am-input-sm" name="wave_spot"
+                                       value="{$list['wave_spot']}" placeholder="请输入波动点位"/>
+                            </label>
+                        </div>
+                        <div class="am-form-group">
+                            <span class="s1">波动价格：</span>
+                            <label class="am-form-label">
+                                <input type="text" id="wave_price" class="am-form-field am-input-sm" name="wave_price"
+                                       value="{$list['wave_price']}" placeholder="请输入波动价格"/>
+                            </label>
+                        </div>
+                        <div class="am-form-group">
+                            <span class="s1">合约价值：</span>
+                            <label class="am-form-label">
+                                <input type="text" id="value" class="am-form-field am-input-sm" name="value"
+                                       value="{$list['value']}" placeholder="请输入合约价值"/>
+                            </label>
+                        </div>
+                        <div class="am-form-group">
+                            <span class="s1">合约单位：</span>
+                            <label class="am-form-label">
+                                <input type="text" id="unit" class="am-form-field am-input-sm" name="unit"
+                                       value="{$list['unit']}" placeholder="请输入合约单位"/>
+                            </label>
+                        </div>
+                        <div class="am-form-group">
+                            <span class="s1">合约月份：</span>
+                            <label class="am-form-label">
+                                <textarea name="month" cols="30" rows="10" class="am-form-field am-input-sm">{$list['month']}</textarea>
+                            </label>
+                        </div>
+                        <!--<div class="am-form-group">-->
+                            <!--<span class="s1">备注信息：</span>-->
+                            <!--<label class="am-form-label">-->
+                                <!--<textarea name="remark" cols="30" rows="10" class="am-form-field am-input-sm">{$list['remark']}</textarea>-->
+                            <!--</label>-->
+                        <!--</div>-->
+                        <div class="am-form-group">
+                            <span class="s1">状态：</span>
+                            <!--0 不可交易 1 可交易 2已删除-->
+                            <label class="am-form-label">
+                                <select name="status" class="am-form-field am-input-sm">
+                                    {switch name="$list['status']" }
+                                    {case value="0"}
+                                    <option selected value="0">不可交易</option>
+                                    <option value="1">可交易</option>
+                                    <option value="2">已删除</option>
+                                    {/case}
+                                    {case value="1" }
+                                    <option selected value="1">可交易</option>
+                                    <option value="0">不可交易</option>
+                                    <option value="2">已删除</option>
+                                    {/case}
+                                    {case value="2"}
+                                    <option selected value="2">已删除</option>
+                                    <option value="1">可交易</option>
+                                    <option value="0">不可交易</option>
+                                    {/case}
+                                    {default /}
+                                    <option selected value="1">可交易</option>
+                                    <option value="0">不可交易</option>
+                                    <option value="2">已删除</option>
+                                    {/switch}
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="am-panel-bd" style="padding-bottom: 1rem;margin-left: 13rem">
+                    <button type="submit" class="am-btn am-btn-primary am-btn-sm" onclick="sub()">确定</button>
+                    <a href="trans.html?a={$a}&b={$b}" class="am-btn am-btn-secondary am-btn-sm">返回</a>
+                </div>
+            </div>
+            {include file="public/content_foot" /}
+        </div>
+    </form>
+    {include file="public/foot" /}
+    <script type="text/javascript">
+        function sub() {
+            var arr = parseFormJson("#form");
+            $.ajax({
+                url: "{:url('Transaction/trans_edits')}",
+                data: {arr: arr},
+                type: "post",
+                success: function (r) {
+                    // console.log(r);
+                    // return false;
+                    if (r['code'] == 1) {
+                        alert_msg(r['msg']);
+                        setTimeout(function () {
+                            window.location.href = '';
+                        }, 1500);
+                    } else {
+                        alert_msg(r['msg']);
+                    }
+                }
+            });
+        }
+    </script>
+</div>
+</body>
+</html>

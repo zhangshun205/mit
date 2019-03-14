@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="public/meta" /}
+    {include file="public/link" /}
+</head>
+<body data-type="index" class="theme-white">
+<div class="am-g tpl-g">
+    {include file="public/header" /}
+    {include file="public/left" /}
+    {include file="public/content_top" /}
+    <ol class="am-breadcrumb">
+        <li><a href="../home/index.html" class="am-icon-home">首页</a></li>
+        <li><a href="../Recharges/index.html?a={$a}&b={$b}">充值管理</a></li>
+        <li class="am-active"><a href="index.html?a={$a}&b={$b}">充值记录</a></li>
+    </ol>
+    <div class="am-form-inline" role="form">
+        <span>日期范围：</span>
+        <div class="am-form-group ">
+            <input type="text" class="am-form-field am-input-sm" name="start" placeholder="请选择起始日期"
+                   data-am-datepicker onfocus="this.blur()" value="{$arr.start_query}"/>
+        </div>
+        <div class="am-form-group ">
+            <input type="text" class="am-form-field am-input-sm" name="end" placeholder="请选择结束日期" data-am-datepicker
+                   onfocus="this.blur()" value="{$arr.end_query}"/>
+        </div>
+        <div class="am-form-group ">
+            <input type="text" id="name" class="am-form-field am-input-sm" placeholder="请输入用户名称或手机号"
+                   value="{$arr.name}"/>
+        </div>
+        <button type="button" class="am-btn am-btn-primary am-btn-sm" onclick="info_query()">查询</button>
+        <button type="button" class="am-btn am-btn-warning am-btn-sm" onclick="clear_query()">清除查询</button>
+        <!--<a href="{:url('recharge_record')}?excel=1&name={$name}&start_query={$start_query}&end_query={$end_query}">导出Excel表格</a>-->
+        <!-- <button type="button" class="am-btn am-btn-primary am-btn-sm" style="margin-left: 200px: " onclick="Derive_excel()">导出Excel表格</button> -->
+    </div>
+    <div class="widget am-cf">
+        <hr data-am-widget="divider" class="am-divider am-divider-default"/>
+        <div class="widget-body widget-body-lg am-fr">
+            <div class="am-scrollable-horizontal">
+                <table class="{$table}">
+                    <thead>
+                    <tr>
+                        <th>账户ID</th>
+                        <th>用户姓名</th>
+                        <th>充值金额</th>
+                        <th>手续费</th>
+                        <th>创建时间</th>
+                        <th>处理时间</th>
+                        <th>备注</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody id="list">
+                    {volist name="list" id="vo" empty="$empty"}
+                    <tr>
+                        <td>{$vo.uid}</td>
+                        <td>{$vo.user.real_name}-{$vo.user.number}</td>
+                        <td>{$vo.number}</td>
+                        <td>{$vo.fee}</td>
+                        <td>{$vo.time}</td>
+                        <td>{$vo.pay_time}</td>
+                        <td>
+                            <input type="text" name="remark" id="remark{$vo.id}" placeholder="请输入反馈信息"
+                                   value="{$vo.remark?($vo.remark):null }"/>
+                        </td>
+                        <td>
+                            {switch name="vo.status"}
+                            {case value="0"}
+                            <a href="#" onclick="pass({$vo.id},1,$('#remark{$vo.id}').val())"
+                               class="am-btn am-btn-success am-btn-xs">通过</a>
+                            <a href="#" onclick="pass({$vo.id},2,$('#remark{$vo.id}').val())"
+                               class="am-btn am-btn-warning am-btn-xs">驳回</a>
+                            {/case}
+                            {case value="1"}
+                            <a href="#" class="am-btn am-btn-success am-btn-xs">已通过</a>
+                            {/case}
+                            {case value="2"}
+                            <a href="#" class="am-btn am-btn-warning am-btn-xs">已驳回</a>
+                            {/case}
+                            {default /}
+                            <a href="#" class="am-btn am-btn-warning am-btn-xs">错误操作</a>
+                            {/switch}
+                        </td>
+                    </tr>
+                    {/volist}
+                    <tr>
+                        <th colspan="3">综合:</th>
+                        <th>{$sum.recharge_num}</th>
+                        <th>{$sum.fee_num}</th>
+                        <th colspan="7">/</th>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="am-pagination-left">{$page}</div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{include file="public/foot" /}
+<script type="text/javascript">
+    function pass(id, type, remark) {
+        layer.confirm('请谨慎操作,操作后不可撤销？', function (index) {
+            $.ajax({
+                type: 'POST',
+                url: "{:url('index/Recharges/modify_recharge')}",
+                data: {id: id, type: type, remark: remark},
+                dataType: 'json',
+                success: function (r) {
+                    layer.msg(r.msg);
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 1500);
+                },
+                error: function (r) {
+                    layer.msg('操作失败!', {icon: 0, time: 1000});
+                },
+            });
+        });
+    }
+</script>
+</body>
+</html>

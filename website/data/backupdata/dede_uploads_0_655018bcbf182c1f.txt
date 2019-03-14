@@ -1,0 +1,11 @@
+INSERT INTO `dede_uploads` VALUES('1','1','123','/uploads/170711/1-1FG11KR2C8.png','1','400','320','0','7183','1499767102','1');
+INSERT INTO `dede_uploads` VALUES('2','12','【财耕谈•收评(0711】大盘会继续向上推进','/uploads/allimg/170712/1541194M0-0.png','1','554','353','0','56458','1499845280','1');
+INSERT INTO `dede_uploads` VALUES('3','12','【财耕谈•收评(0711】大盘会继续向上推进','/uploads/allimg/170712/1541195310-1.png','1','554','349','0','83875','1499845280','1');
+INSERT INTO `dede_uploads` VALUES('4','14','这项数据显示信心回暖 杠杆资金纷纷入市(20股或','/uploads/allimg/170712/15451U520-0.jpg','1','400','400','0','14533','1499845518','1');
+INSERT INTO `dede_uploads` VALUES('5','14','这项数据显示信心回暖 杠杆资金纷纷入市(20股或','/uploads/allimg/170712/15451R020-1.jpg','1','514','303','0','20612','1499845518','1');
+INSERT INTO `dede_uploads` VALUES('6','14','这项数据显示信心回暖 杠杆资金纷纷入市(20股或','/uploads/allimg/170712/15451TL3-2.jpg','1','585','552','0','80045','1499845518','1');
+INSERT INTO `dede_uploads` VALUES('7','14','这项数据显示信心回暖 杠杆资金纷纷入市(20股或','/uploads/allimg/170712/15451U147-3.jpg','1','640','620','0','89107','1499845519','1');
+INSERT INTO `dede_uploads` VALUES('8','14','这项数据显示信心回暖 杠杆资金纷纷入市(20股或','/uploads/allimg/170712/15451RV1-4.jpg','1','640','295','0','45432','1499845519','1');
+INSERT INTO `dede_uploads` VALUES('9','0','170714/1-1FG4164525936.jpg','/uploads/allimg/170714/1-1FG4164525936.jpg','1','620','329','0','60100','1500021925','1');
+INSERT INTO `dede_uploads` VALUES('10','0','170714/1-1FG41H501A3.jpg','/uploads/allimg/170714/1-1FG41H501A3.jpg','1','620','329','0','60100','1500024301','1');
+INSERT INTO `dede_uploads` VALUES('11','0','170714/1-1FG41I0131U.jpg','/uploads/allimg/170714/1-1FG41I0131U.jpg','1','620','329','0','60100','1500024613','1');
